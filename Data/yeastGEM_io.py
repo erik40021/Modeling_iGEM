@@ -1,4 +1,5 @@
 """
+@License yeastGEM
 Functions for importing and exporting the yeast model using COBRA from anywhere in the repo.
 """
 
