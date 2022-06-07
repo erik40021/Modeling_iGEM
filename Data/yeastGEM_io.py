@@ -10,6 +10,7 @@ import os
 
 dirname = os.getcwd()
 MODEL_PATH = os.path.join(dirname, "Data/yeast-GEM.xml")
+MODEL_ADAPTED_PATH = os.path.join(dirname, "Data/yeast-GEM_adapted.xml")
 
 # yeastGEM io wrapper functions :
 def read_yeast_model(make_bigg_compliant=False, path=MODEL_PATH):
@@ -100,7 +101,7 @@ def read_yeast_model(make_bigg_compliant=False, path=MODEL_PATH):
 
     return model
 
-def write_yeast_model(model, path=MODEL_PATH):
+def write_yeast_model(model, path=MODEL_ADAPTED_PATH):
     """Writes the SBML file of the yeast model using COBRA.
 
     Parameters
@@ -108,4 +109,5 @@ def write_yeast_model(model, path=MODEL_PATH):
     model : cobra.core.Model
         Yeast model to be written
     """
+    print("\nsaving model to ",path, " ...")
     write_sbml_model(model, path)
