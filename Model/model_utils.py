@@ -10,6 +10,7 @@
 
 # model.reaction.get_by_id()
 # model.metabolite.get_by_id()
+# model.metabolites.
 
 
 
