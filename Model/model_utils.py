@@ -1,3 +1,16 @@
+# Useful functions to interact with a COBRApy model
+
+
+# Don't forget: for almost every thing we want to do, there might already 
+# be a perfectly fit function!
+
+
+
+# (Definitely not complete) list of useful pre-installed functions:
+
+# model.reaction.get_by_id()
+# model.metabolite.get_by_id()
+
 
 
 def summarize_properties(model, short=False):
