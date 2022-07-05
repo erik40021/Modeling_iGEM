@@ -60,7 +60,8 @@ model.objective = {model.reactions.get_by_id("r_apinene_con"): 0.5, model.reacti
 print(f"\nModel objective expression: {model.objective.expression}")
 print(f"Model objective direction: {model.objective.direction}\n")
 
-
+# adjust lower bounds to simulate overexpression of underlying genes
+model.reactions.get_by_id("r_gpp_apinene").lower_bound = 2
 
 
 # --- step 4: run solver
