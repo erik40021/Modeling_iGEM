@@ -1,17 +1,15 @@
-import math
 from Data.yeastGEM_io import read_yeast_model, write_yeast_model
-from Model.model_utils import summarize_properties
+from Model.model_utils import plot_fluxes, summarize_properties
 from cobra import Model, Reaction, Metabolite
-import optlang
-import xlsxwriter
-from matplotlib import pyplot as plt
-import numpy as np
 
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.2
 KNOCK_DOWN_HIGHER_BOUND = 500
 APINENE_OBJECTIVE_COEFFICIENT = 0.2
 GROWTH_OBJECTIVE_COEFFICIENT = 0.8
+FLUX_LABELS = ["biomass", "fpp_prod", "aps_gpp_apinene", "erg20_gpp", "npp_prod", "aps_npp_apinene", "aggpps2_gpp", "mfps144_gpp"]
+COLORS = ['seagreen', 'yellow', 'red', 'royalblue', 'sandybrown', 'darkred', 'cornflowerblue', 'lightsteelblue']
+STACK_INDICES = [(5,6,7), (2,3,3)]
 
 def simulate_variant_1():
     ''' simulates first sc_cyto variant with two overexpressions (Erg13 and tHMGR) and one knock-in (APS) '''
@@ -24,7 +22,7 @@ def simulate_variant_1():
     model.reactions.get_by_id("r_gpp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
     results.append(solve_and_get_reaction_fluxes(model, "APS ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
     #write_to_excel(results)
-    plot_fluxes(results, 0.1, (10,7), save_as='scc_variant1.png')
+    plot_fluxes(results, FLUX_LABELS, COLORS, STACK_INDICES, 0.1, (10,7), save_as='scc_variant1.png')
 
 def simulate_variant_2():
     ''' simulates second sc_cyto variant with three knock-ins (APS, AgGPPS2, mFPS144) and one knock-out (Erg20)'''
@@ -41,7 +39,7 @@ def simulate_variant_2():
     results.append(solve_and_get_reaction_fluxes(model, "mFPS144 ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
     model.reactions.get_by_id("r_ipp_gpp_mfps144_fpp").higher_bound = KNOCK_DOWN_HIGHER_BOUND
     results.append(solve_and_get_reaction_fluxes(model, "mFPS144 low FPP aff.", "higher bound=" + str(KNOCK_DOWN_HIGHER_BOUND)))
-    plot_fluxes(results, 0.1, (12, 6), save_as='scc_variant2.png')
+    plot_fluxes(results, FLUX_LABELS, COLORS, STACK_INDICES, 0.1, (12, 6), save_as='scc_variant2.png')
 
 
 def simulate_variant_3():
@@ -61,7 +59,7 @@ def simulate_variant_3():
     model.reactions.get_by_id("r_0355").higher_bound = KNOCK_DOWN_HIGHER_BOUND # gpp production
     model.reactions.get_by_id("r_0462").higher_bound = KNOCK_DOWN_HIGHER_BOUND # fpp production
     results.append(solve_and_get_reaction_fluxes(model, "Erg20-KD by pCTR3", "higher bound=" + str(KNOCK_DOWN_HIGHER_BOUND)))
-    plot_fluxes(results, 0.1, (12,6), save_as='scc_variant3.png')
+    plot_fluxes(results, FLUX_LABELS, COLORS, STACK_INDICES, 0.1, (12,6), save_as='scc_variant3.png')
 
 
 def simulate_fpp_knockout():
@@ -103,7 +101,7 @@ def simulate_all_changes():
     model.reactions.get_by_id("r_0355").higher_bound = KNOCK_DOWN_HIGHER_BOUND # gpp production
     model.reactions.get_by_id("r_0462").higher_bound = KNOCK_DOWN_HIGHER_BOUND # fpp production
     results.append(solve_and_get_reaction_fluxes(model, "Erg20-KD by pCTR3", "higher bound=" + str(KNOCK_DOWN_HIGHER_BOUND)))
-    plot_fluxes(results, 0.1, (15,8), save_as='scc_all_manipulations.png')
+    plot_fluxes(results, FLUX_LABELS, COLORS, STACK_INDICES, 0.1, (15,8), save_as='scc_all_manipulations.png')
 
 def build_basic_model():
     results = []
@@ -250,57 +248,7 @@ def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=
     return l[:len(l)-1] + [change_biological]
     
 
-def plot_fluxes(res, bar_width=0.1, size=(10,7), save_as=None):
-    labels = ["biomass", "fpp_prod", "aps_gpp_apinene", "erg20_gpp", "npp_prod", "aps_npp_apinene", "aggpps2_gpp","mfps144_gpp"]
-    colors = ['seagreen', 'yellow', 'red', 'royalblue', 'sandybrown', 'darkred', 'cornflowerblue', 'lightsteelblue']
-    subtitles = [i[8] for i in res]
-    ys = []
-    for i in range(0, 8):
-        ys += [j[i] for j in res]
-    for i in range(0, len(res)):
-        ys[len(res)*2 + i] += ys[len(res)*5 + i]
-        ys[len(res)*3 + i] += ys[len(res)*6 + i] + ys[len(res)*7 + i]
-    max_y = max(ys)
-    for i in range(0,len(subtitles)):
-        if len(subtitles[i]) > 14:
-            a = str.split(subtitles[i])
-            subtitles[i] = ' '.join(a[:math.ceil(len(a)/2)]) + "\n" + ' '.join(a[math.ceil(len(a)/2):])
-    x = np.arange(len(subtitles))  # the label locations
-    width = bar_width # the width of the bars
-    fig, ax = plt.subplots()
-    offset = -2
-    ax.bar(x + (offset)*width, [j[0] for j in res], width, label=labels[0], color=colors[0])
-    ax.bar(x + (offset+1)*width, [j[1] for j in res], width, label=labels[1], color=colors[1])
-    ax.bar(x + (offset+2)*width, [j[2] for j in res], width, label=labels[2], color=colors[2])
-    ax.bar(x + (offset+2)*width, [j[5] for j in res], width, bottom=[j[2] for j in res], label=labels[5], color=colors[5])
-    ax.bar(x + (offset+3)*width, [j[3] for j in res], width, label=labels[3], color=colors[3])
-    ax.bar(x + (offset+3)*width, [j[6] for j in res], width, bottom=[j[3] for j in res], label=labels[6], color=colors[6])
-    ax.bar(x + (offset+3)*width, [j[7] for j in res], width, bottom=[j[6] for j in res], label=labels[7], color=colors[7])
-    ax.bar(x + (offset+4)*width, [j[4] for j in res], width, label=labels[4], color=colors[4])
-     # Add some text for labels, title and custom x-axis tick labels, etc.
-    ax.set_ylabel('Flux [mmol/gdcw/h]')
-    ax.set_title('Fluxes after Manipulations')
-    if len(res) > 5:
-        ax.set_xticks(x, subtitles, rotation=45)
-    else:
-        ax.set_xticks(x, subtitles)
-    ax.set_ylim(top=max_y + 0.05*max_y)
-    ax.legend()
-    fig.tight_layout()
-    fig.set_size_inches(size[0], size[1])
-    if save_as is not None:
-        plt.savefig("Output/" + save_as, dpi=500)
-    plt.show()
-    
 
-
-def write_to_excel(res):
-    results = [["biomass", "aps_gpp_apinene", "aps_npp_apinene", "aggpps2_gpp",
-    "mfps144_gpp", "erg20_gpp", "fpp_prod", "npp_prod", "change_info"]] + res
-    with xlsxwriter.Workbook('Output/scc.xlsx') as workbook:
-        worksheet = workbook.add_worksheet()
-        for row_num, data in enumerate(results):
-            worksheet.write_row(row_num, 0, data)
 
 
 

@@ -41,8 +41,12 @@ Erg8_reaction = Reaction(id="MVA5", name="1.0 Mevalonate-P + 1.0 ATP --> 1.0 Mev
 Erg19_reaction = Reaction(id="MVA6", name="1.0 Mevalonate-PP + 1.0 ATP --> 1.0 IPP + 1.0 ADP + 1.0 PO4 + 1.0 CO2", lower_bound=None, upper_bound=1000.0) #irreversible reactions, so lower_bound = None
 Idi1_reaction = Reaction(id="MVA7", name="1.0 IPP <--> 1.0 DMAPP", upper_bound=1000.0)
 
-mFPS144_reaction = Reaction(id="MVA8", name="1.0 IPP + 1.0 DMAPP --> 1.0 GPP + 1.0 Diphosphate", upper_bound=1000.0)
-APS_reaction = Reaction(id="MVA9", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0)
+AgGPPS2_GPP_reaction = Reaction(id="MVA8", name="1.0 IPP + 1.0 DMAPP --> 1.0 GPP + 1.0 Diphosphate", upper_bound=1000.0)
+AgGPPS2_FPP_reaction = Reaction(id="MVA9", name="", upper_bound=1000.0) #TODO
+mFPS144_reaction = Reaction(id="MVA10", name="1.0 IPP + 1.0 DMAPP --> 1.0 GPP + 1.0 Diphosphate", upper_bound=1000.0)
+APS_npp_reaction = Reaction(id="MVA11", name="1.0 FPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0)
+APS_gpp_reaction = Reaction(id="MVA12", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0)
+#TODO add missing reactions (SiNPPS1)
 
 # Add metabolites and reaction stoichiometry to reaction objects
 Erg10_reaction.add_metabolites({
@@ -103,11 +107,12 @@ mFPS144_reaction.add_metabolites({
     Diphosphate: 1.0
 })
 
-APS_reaction.add_metabolites({
+APS_gpp_reaction.add_metabolites({
     GPP: -1.0,
     Alpha_pinene: 1.0,
     Diphosphate: 1.0
 })
+#TODO add missing metabolites to reactions
 
 # Add reactions to model
 reactionlist = [
@@ -118,12 +123,37 @@ reactionlist = [
     Erg8_reaction,
     Erg19_reaction,
     Idi1_reaction,
-    mFPS144_reaction,
-    APS_reaction
+    mFPS144_reaction, #7
+    AgGPPS2_GPP_reaction,
+    AgGPPS2_FPP_reaction,
+    APS_gpp_reaction,
+    APS_npp_reaction
 ]
 
 for reaction in reactionlist:
     model.add_reaction(reaction)
+
+def simulate_all_changes():
+    #TODO
+    return
+
+def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=""):
+    solution = model.optimize()
+    print("\n--- Change made to model: " + change_biological + "/" + change_technical + " ---")
+    l = [solution.fluxes.get('r_2111')] + reactionlist
+    for i in range(0,len(l)):
+        if l[i] == None:
+            l[i] = 0.0
+    ap_prod = l[2] + l[5]
+    gpp_prod = l[3] + l[6] + l[7]
+    print("aPinene production flux: " + str(ap_prod) + " of which")
+    print(" - "+str(l[2])+" by aps with gpp"); print(" - "+str(l[5])+" by aps with npp")
+    print("fpp production flux: " + str(l[10]))
+    print("biomass flux: " + str(l[0])) #biomass
+    print("gpp production flux: "+ str(gpp_prod) + " of which")
+    print(" - "+str(l[9])+" by AgGPPS2"); print(" - "+str(l[8])+" by mFPS144")
+    print("npp production flux: " + str(l[4]))
+    return l + [change_biological]
 
 # --- Step 2: FBA of both models ---
 referenceState = reference.optimize()
@@ -146,3 +176,5 @@ print("Recations with changes in flux: {}".format(len(df[(df["Fold_change"] != 1
 
 plt.hist(df["Fold_change"], bins=5)
 plt.show()
+
+
