@@ -25,27 +25,30 @@ def plot_fluxes(res, labels, colors, stack_indices, bar_width=0.1, size=(10,7), 
     '''
     subtitles = [i[len(res[0])-1] for i in res]
     ys = []
+    # flatten fluxes list to calculate max
     for i in range(0, len(res[0])-1):
         ys += [j[i] for j in res]
-    for i in range(0, len(res)):
-        ys[len(res)*2 + i] += ys[len(res)*5 + i]
-        ys[len(res)*3 + i] += ys[len(res)*6 + i] + ys[len(res)*7 + i]
-    max_y = max(ys)
+    # add sums of fluxes in stacked bars
+    for j in range(0, len(stack_indices[0])):
+        for i in range(0, len(res)):
+            ys[len(res)*stack_indices[1][j] + i] += ys[len(res)*stack_indices[0][j] + i]
     for i in range(0,len(subtitles)):
         if len(subtitles[i]) > 14:
             a = str.split(subtitles[i])
             subtitles[i] = ' '.join(a[:math.ceil(len(a)/2)]) + "\n" + ' '.join(a[math.ceil(len(a)/2):])
+    max_y = max(ys)
     x = np.arange(len(subtitles))  # the label locations
     width = bar_width # the width of the bars
     fig, ax = plt.subplots()
     offset = -2
+    bars = []
     for i in range(0, len(res[0])-(1+len(stack_indices[0]))):
-        ax.bar(x + (offset + i)*width, [j[i] for j in res], width, label=labels[i], color=colors[i])
+        bars.append(ax.bar(x + (offset + i)*width, [j[i] for j in res], width, label=labels[i], color=colors[i]))
         if i in stack_indices[1]:
             index_prev = i
             for k in range(stack_indices[1].index(i), stack_indices[1].index(i)+stack_indices[1].count(i)):
-                ax.bar(x + (offset + i)*width, [j[stack_indices[0][k]] for j in res], width, bottom=[j[index_prev] for j in res],
-                    label=labels[stack_indices[0][k]], color=colors[stack_indices[0][k]])
+                bars.append(ax.bar(x + (offset + i)*width, [j[stack_indices[0][k]] for j in res], width, bottom=[j[index_prev] for j in res],
+                    label=labels[stack_indices[0][k]], color=colors[stack_indices[0][k]]))
                 index_prev = stack_indices[0][k]
         
      # Add some text for labels, title and custom x-axis tick labels, etc.
@@ -55,7 +58,7 @@ def plot_fluxes(res, labels, colors, stack_indices, bar_width=0.1, size=(10,7), 
         ax.set_xticks(x, subtitles, rotation=45)
     else:
         ax.set_xticks(x, subtitles)
-    ax.set_ylim(top=max_y + 0.05*max_y)
+    ax.set_ylim(top=1.05*max_y)
     ax.legend()
     fig.tight_layout()
     fig.set_size_inches(size[0], size[1])

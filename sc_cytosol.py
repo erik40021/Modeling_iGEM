@@ -112,7 +112,7 @@ def build_basic_model():
     aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
     # biological reaction: 1.0 GPP -> 1.0 aPinene
     react_gpp_alphapinene = Reaction('r_gpp_aps_apinene')
-    react_gpp_alphapinene.name = 'GPP -> aPinene'
+    react_gpp_alphapinene.name = 'GPP -> aPinene + PPi'
     react_gpp_alphapinene.subsystem = 'Cytoplasm'
     react_gpp_alphapinene.lower_bound = 0.  # This is the default
     react_gpp_alphapinene.upper_bound = 1000.  # This is the default
@@ -146,19 +146,20 @@ def build_basic_model():
 def add_erg20_ko_and_alternative(model):
     reactions_list = list()
     react_dmapp_gpp = Reaction('r_dmapp_aggpps2_gpp')
-    react_dmapp_gpp.name = 'DMAPP -> GPP'
+    react_dmapp_gpp.name = 'IPP + DMAPP -> GPP + PPi'
     react_dmapp_gpp.subsystem = 'Cytoplasm'
     react_dmapp_gpp.lower_bound = 0.  # This is the default
     react_dmapp_gpp.upper_bound = 1000.  # This is the default
     react_dmapp_gpp.add_metabolites({
-        model.metabolites.get_by_id("s_1376"): -2.0, # DMAPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
         model.metabolites.get_by_id("s_0745"): 1.0, # GPP (C10H17O7P2)
         model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
     })
     react_dmapp_gpp.gene_reaction_rule = '(AgGPPS2)'
 
     react_ipp_dmapp_gpp = Reaction('r_ipp_dmapp_mfps144_gpp')
-    react_ipp_dmapp_gpp.name = 'IPP + DMAPP -> GPP'
+    react_ipp_dmapp_gpp.name = 'IPP + DMAPP -> GPP + PPi'
     react_ipp_dmapp_gpp.subsystem = 'Cytoplasm'
     react_ipp_dmapp_gpp.lower_bound = 0.  # This is the default
     react_ipp_dmapp_gpp.upper_bound = 1000.  # This is the default
@@ -171,7 +172,7 @@ def add_erg20_ko_and_alternative(model):
     react_ipp_dmapp_gpp.gene_reaction_rule = '(mFPS144)'
 
     react_ipp_gpp_fpp = Reaction('r_ipp_gpp_mfps144_fpp')
-    react_ipp_gpp_fpp.name = 'IPP + GPP -> FPP'
+    react_ipp_gpp_fpp.name = 'IPP + GPP -> FPP + PPi'
     react_ipp_gpp_fpp.subsystem = 'Cytoplasm'
     react_ipp_gpp_fpp.lower_bound = 0.  # This is the default
     react_ipp_gpp_fpp.upper_bound = 1000.  # This is the default
@@ -195,7 +196,7 @@ def add_npp_pathway(model):
     reactions_list = list()
     npp = Metabolite('NPP', formula='C10H17O7P2', name='Neryl pyrophosphate', charge=-3, compartment='c')
     react_dmapp_npp = Reaction('r_dmapp_sinpps2_npp')
-    react_dmapp_npp.name = 'DMAPP -> NPP'
+    react_dmapp_npp.name = 'IPP + DMAPP -> NPP + PPi'
     react_dmapp_npp.subsystem = 'Cytoplasm'
     react_dmapp_npp.lower_bound = 0.  # This is the default
     react_dmapp_npp.upper_bound = 1000.  # This is the default
@@ -208,7 +209,7 @@ def add_npp_pathway(model):
     react_dmapp_npp.gene_reaction_rule = '(SiNPPS2)'
 
     react_npp_alphapinene = Reaction('r_npp_aps_apinene')
-    react_npp_alphapinene.name = 'GPP -> aPinene'
+    react_npp_alphapinene.name = 'NPP -> aPinene + PPi'
     react_npp_alphapinene.subsystem = 'Cytoplasm'
     react_npp_alphapinene.lower_bound = 0.  # This is the default
     react_npp_alphapinene.upper_bound = 1000.  # This is the default
