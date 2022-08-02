@@ -13762,7 +13762,7 @@
           </listOfParameters>
         </kineticLaw>
       </reaction>
-      <reaction name="biomass yarrowia carbon limiting" reversible="false">
+      <reaction id="R_Biomass_Climit" name="biomass yarrowia carbon limiting" reversible="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>GENE_ASSOCIATION: </p>
@@ -13835,7 +13835,7 @@
           </listOfParameters>
         </kineticLaw>
       </reaction>
-      <reaction name="biomass yarrowia nitrogen limiting" reversible="false">
+      <reaction id="R_Biomass_Nlimit" name="biomass yarrowia nitrogen limiting" reversible="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>GENE_ASSOCIATION: </p>

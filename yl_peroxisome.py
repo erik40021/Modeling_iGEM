@@ -1,32 +1,33 @@
-from cobra import Model, Reaction, Metabolite, read_sbml_model
+from cobra import Model, Reaction, Metabolite
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
+from cobra.io import read_sbml_model
 # --- Step 1: Create reference model and model with heterologous reactions for alpha-pienen synthesis in peroxisomes ---
 
 # create reference and engineered model
-model = read_sbml_model("Data/iYLl647.xml")
+model = read_sbml_model("Data/iYLI647.xml")
 
 # initilize metabolite objects for heterologous reactions in peroxisomes
-Acetyl_CoA = model.metabolites.get_by_id("M_accoa_x")
-Acetoacetyl_CoA = Metabolite(id="M_aacoa_x", formula="C25H36N7O18P3S", name="acetoacetyl-CoA[p]", charge=-4, compartment="x") 
-CoA = model.metabolites.get_by_id("M_coa_x")
-HMG_CoA = Metabolite(id="M_hmgcoa_x", formula="C27H39N7O20P3S", name="3-hydroxy-3-methylglutaryl-CoA[p]", charge=-5, compartment="x")
-NADPH = model.metabolites.get_by_id("M_nadph_x")
-NADP = model.metabolites.get_by_id("M_nadp_x")
-H_p = model.metabolites.get_by_id("M_h_x")
-Mevalonate = Metabolite(id="M_mev_x", formula="C6H11O4", name="(R)-mevalonate[p]", charge=-1, compartment="x")
-Mevalonate_P = Metabolite(id="M_5pmev_x", formula="C6H10O7P", name="(R)-5-phosphomevalonic acid[p]", charge=-3, compartment="x")
-Mevalonate_PP = Metabolite(id="M_5dpmev_x", formula="C6H10O10P2", name="(R)-5-diphosphomevalonic acid[p]", charge=-4, compartment="x")
-ATP = model.metabolites.get_by_id("M_atp_x")
-ADP = model.metabolites.get_by_id("M_adp_x")
-IPP = Metabolite(id="M_ipdp_x", formula="C5H9O7P2", name="isopentyl diphosphate[p]", charge=-3, compartment="x")
-DMAPP = Metabolite(id="M_dmpp_x", formula="C5H9O7P2", name="dimethylallyl diphosphate[p]", charge=-3, compartment="x")
-GPP = Metabolite(id="M_grdp_x", formula="C10H17O7P2", name="geranyl diphosphate[p]", charge=-3, compartment="x")
-Alpha_pinene = Metabolite(id="M_0000_x", formula="C6H16", name="(+)-alpha-pinene[p]", charge=0, compartment="x")#metabolite not excisting in any other compartment
-Phosphate = model.metabolites.get_by_id("M_pi_x")
-CO2 = model.metabolites.get_by_id("M_co2_x")
-Diphosphate = model.metabolites.get_by_id("M_ppi_x")
+Acetyl_CoA = model.metabolites.get_by_id("accoa_x")
+Acetoacetyl_CoA = Metabolite(id="aacoa_x", formula="C25H36N7O18P3S", name="acetoacetyl-CoA[p]", charge=-4, compartment="x") 
+CoA = model.metabolites.get_by_id("coa_x")
+HMG_CoA = Metabolite(id="hmgcoa_x", formula="C27H39N7O20P3S", name="3-hydroxy-3-methylglutaryl-CoA[p]", charge=-5, compartment="x")
+NADPH = model.metabolites.get_by_id("nadph_x")
+NADP = model.metabolites.get_by_id("nadp_x")
+H_p = model.metabolites.get_by_id("h_x")
+Mevalonate = Metabolite(id="mev_x", formula="C6H11O4", name="(R)-mevalonate[p]", charge=-1, compartment="x")
+Mevalonate_P = Metabolite(id="5pmev_x", formula="C6H10O7P", name="(R)-5-phosphomevalonic acid[p]", charge=-3, compartment="x")
+Mevalonate_PP = Metabolite(id="5dpmev_x", formula="C6H10O10P2", name="(R)-5-diphosphomevalonic acid[p]", charge=-4, compartment="x")
+ATP = model.metabolites.get_by_id("atp_x")
+ADP = model.metabolites.get_by_id("adp_x")
+IPP = Metabolite(id="ipdp_x", formula="C5H9O7P2", name="isopentyl diphosphate[p]", charge=-3, compartment="x")
+DMAPP = Metabolite(id="dmpp_x", formula="C5H9O7P2", name="dimethylallyl diphosphate[p]", charge=-3, compartment="x")
+GPP = Metabolite(id="grdp_x", formula="C10H17O7P2", name="geranyl diphosphate[p]", charge=-3, compartment="x")
+Alpha_pinene = Metabolite(id="0000_x", formula="C6H16", name="(+)-alpha-pinene[p]", charge=0, compartment="x")#metabolite not excisting in any other compartment
+Phosphate = model.metabolites.get_by_id("pi_x")
+CO2 = model.metabolites.get_by_id("co2_x")
+Diphosphate = model.metabolites.get_by_id("ppi_x")
 
 # initilize reaction objects for heterologous reactions
 Erg10_reaction = Reaction(id="MVA1", name="2.0 Acetyl-CoA --> 1.0 Acetoacetyl-CoA + 1.0 CoA", upper_bound=1000.0)
