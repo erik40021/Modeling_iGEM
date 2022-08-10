@@ -10,8 +10,8 @@ model = read_sbml_model("Data/iYLI647.xml")
 
 # initilize metabolite objects for heterologous reactions in cytosol
 aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
-PPi = model.metabolites.get_by_any("M_ppi_c")
-GPP = model.metabolites.get_by_id("M_grdp_c")
+PPi = model.metabolites.get_by_any("ppi_c")
+GPP = model.metabolites.get_by_id("grdp_c")
 
 # initilize reaction objects for heterologous reactions
 
