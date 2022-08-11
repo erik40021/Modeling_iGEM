@@ -22,6 +22,12 @@ GPP = model.metabolites.get_by_id("grdp_c")
 FPP = model.metabolites.get_by_id("frdp_c")
 IPP = model.metabolites.get_by_id("ipdp_c")
 DMAPP = model.metabolites.get_by_id("dmpp_c")
+HMGR = model.metabolites.get_by_id("hmgcoa_c")
+MEV = model.metabolites.get_by_id("mev_R_c")
+NADPH = model.metabolites.get_by_id("nadph_c")
+NADP = model.metabolites.get_by_id("nadp_c")
+H = model.metabolites.get_by_id("h_c")
+COA = model.metabolites.get_by_id("coa_c")
 Diphosphate = model.metabolites.get_by_id("ppi_c")
 
 
@@ -49,6 +55,17 @@ def AP_Syn():
     reactionlist.append(APS_NPP_reaction)
     reactionlist.append(Extract_aPinene)
 
+def MEV_Pathway():
+    tHMGR_reaction = Reaction(id="tHMGR", name="1.0 HMG-CoA + 2.0 NADPH + 2 h_c --> 1.0 Mevalonate + 2.0 NADP + 1.0 CoA",subsystem="Cytoplasm",lower_bound=OVEREXPRESSION_LOWER_BOUND,upper_bound=1000.0)
+    tHMGR_reaction.add_metabolites({
+        HMGR:-1.0,
+        NADPH:-2.0,
+        H: -2.0,
+        MEV: 1.0,
+        NADP: 2.0,
+        COA: 1.0
+    })
+    reactionlist.append(tHMGR_reaction)
 
 def GPP_Pathway():
     GPPS_reaction = Reaction(id="GPP_s", name= "1.0 IPP+1.0 DMAPP--> 1.0 GPP + 1.0 Diphosphate",subsystem="Cytoplasm",lower_bound= OVEREXPRESSION_LOWER_BOUND, upper_bound=1000.0)
@@ -96,13 +113,18 @@ def erg20_knockdown():
     model.reactions.get_by_id("DMATT").higher_bound=KNOCK_DOWN_HIGHER_BOUND
     model.reactions.get_by_id("GRTT").higher_bound=KNOCK_DOWN_HIGHER_BOUND
 
+def erg13_overexpression():
+    model.reactions.get_by_id("HMGCOAS").lower_bound=OVEREXPRESSION_LOWER_BOUND
 
 #activate functions to build model
+erg13_overexpression()
+MEV_Pathway()
 GPP_Pathway()
 NPP_Pathway()
-AP_Syn()
 erg20_knockdown() #erg20 knockdown 
 #model.genes.YALI0E05753g.knock_out() #erg20 knockout
+AP_Syn()
+
 
 for reaction in reactionlist:
     model.add_reaction(reaction)
