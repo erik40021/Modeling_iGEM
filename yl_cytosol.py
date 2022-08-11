@@ -29,8 +29,6 @@ def AP_Syn():
     APS_GPP_reaction = Reaction(id="aPinen_gpp_s", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", subsystem="Cytoplasm",lower_bound=OVEREXPRESSION_LOWER_BOUND, upper_bound=1000.0)
     APS_NPP_reaction = Reaction(id="aPinen_fpp_s", name="1.0 NPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", subsystem="Cytoplasm",lower_bound=OVEREXPRESSION_LOWER_BOUND, upper_bound=1000.0)
     Extract_aPinene =Reaction(id="aPinene_ex", name="extract Alpha-Pinene", subsystem="Cytoplasm", upper_bound=1000.0)
-    
-
     APS_GPP_reaction.add_metabolites({
         GPP: -1.0,
         aPinene: 1.0,
@@ -53,16 +51,10 @@ def AP_Syn():
 
 
 def GPP_Pathway():
-    # initilize metabolite objects for heterologous reactions in cytosol
-    
-    # initilize reaction objects for heterologous reactions
-    model.genes.YALI0E05753g.knock_out() #erg20 knockout
     GPPS_reaction = Reaction(id="GPP_s", name= "1.0 IPP+1.0 DMAPP--> 1.0 GPP + 1.0 Diphosphate",subsystem="Cytoplasm",lower_bound= OVEREXPRESSION_LOWER_BOUND, upper_bound=1000.0)
     mFPPS_gpp_reaction = Reaction(id="FPP_GPP_s",name="1.0 IPP+1.0 DMAPP--> 1.0 GPP + 1.0 Diphosphate",subsystem="Cytoplasm",lower_bound=OVEREXPRESSION_LOWER_BOUND,upper_bound=1000.0)
     mFPPS_fpp_reaction = Reaction(id="FPP_FPP_s",name="1.0 GPP+1.0 DMAPP--> 1.0 FPP + 1.0 Diphosphate",subsystem="Cytoplasm",lower_bound=OVEREXPRESSION_LOWER_BOUND,upper_bound=1000.0)
     
-    # Add metabolites and reaction stoichiometry to reaction objects
-
     GPPS_reaction.add_metabolites({
         IPP: -1.0,
         DMAPP: -1.0,
@@ -86,8 +78,6 @@ def GPP_Pathway():
     })
     mFPPS_fpp_reaction.gene_reaction_rule='mFPPs'
 
-    
-    # Add reactions to model
     reactionlist.append(GPPS_reaction)
     reactionlist.append(mFPPS_gpp_reaction)
     reactionlist.append(mFPPS_fpp_reaction)
@@ -102,15 +92,22 @@ def NPP_Pathway():
     })
     reactionlist.append(SINPPS_reaction)
 
+def erg20_knockdown():
+    model.reactions.get_by_id("DMATT").higher_bound=KNOCK_DOWN_HIGHER_BOUND
+    model.reactions.get_by_id("GRTT").higher_bound=KNOCK_DOWN_HIGHER_BOUND
 
 
+#activate functions to build model
 GPP_Pathway()
 NPP_Pathway()
 AP_Syn()
+erg20_knockdown() #erg20 knockdown 
+#model.genes.YALI0E05753g.knock_out() #erg20 knockout
+
 for reaction in reactionlist:
     model.add_reaction(reaction)
 
-#model.objective= "aPinene_ex"
+#objective function
 model.objective={model.reactions.get_by_id("Biomass_Climit"):GROWTH_OBJECTIVE_COEFFICIENT, model.reactions.get_by_id("aPinene_ex"):APINENE_OBJECTIVE_COEFFICIENT}
 
 solution = model.optimize()
