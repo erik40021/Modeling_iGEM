@@ -3,7 +3,6 @@
 # Don't forget: for almost every thing we want to do, there might already 
 # be a perfectly fitting function!
 
-from inspect import stack
 import math
 from matplotlib import pyplot as plt
 import numpy as np
