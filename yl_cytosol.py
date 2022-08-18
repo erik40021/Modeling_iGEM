@@ -141,7 +141,7 @@ def run_medium_test(Food,Nutrients):
         model.medium = medium
         #change medium
         medium=model.medium
-        medium[f]=1000                      #add only one food
+        medium[f]=10                      #add only one food
         model.medium = medium
 
         solution = model.optimize()
