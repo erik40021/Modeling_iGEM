@@ -12,10 +12,21 @@ GROWTH_OBJECTIVE_COEFFICIENT = 0.8
 
 # --- Step 1: Create reference model and model with heterologous reactions for alpha-pienen synthesis in cytosol ---
 
-Food=[
+Food=[                      #list carbon sources here
 "EX_glc_LPAREN_e_RPAREN_",
 "EX_inost_LPAREN_e_RPAREN_",
-"trehalose_c_tp"
+"trehalose_c_tp",
+"EX_xyl_D_LPAREN_e_RPAREN_"
+]
+Nutrients=[                 #list other nutrients here
+"EX_h2o_LPAREN_e_RPAREN_",
+"EX_h_LPAREN_e_RPAREN_",
+"EX_k_LPAREN_e_RPAREN_",
+"EX_na1_LPAREN_e_RPAREN_",
+"EX_nh4_LPAREN_e_RPAREN_",
+"EX_o2_LPAREN_e_RPAREN_",
+"EX_pi_LPAREN_e_RPAREN_",
+"EX_so4_LPAREN_e_RPAREN_",
 ]
 Solutions=[]
 
@@ -124,7 +135,6 @@ def erg13_overexpression():
     model.reactions.get_by_id("HMGCOAS").lower_bound=OVEREXPRESSION_LOWER_BOUND
 
 def run_full():
-    global_food=0
     #activate functions to build model
     erg13_overexpression()
     MEV_Pathway()
@@ -138,27 +148,33 @@ def run_full():
 
     #objective function
     model.objective={model.reactions.get_by_id("Biomass_Climit"):GROWTH_OBJECTIVE_COEFFICIENT, model.reactions.get_by_id("aPinene_ex"):APINENE_OBJECTIVE_COEFFICIENT}
-    for f in Food:
+    
+    for f in Food:                          #test model for every food
         medium=model.medium
-        for i in Food:
+        for i in Food:                      #set food in medium to 0
             medium[i]=0
+        for n in Nutrients:                 #add nutrients
+            medium[n]=1000
         model.medium = medium
         #change medium
         medium=model.medium
-        medium[Food[global_food]]=1000
+        medium[f]=1000                      #add only one food
         model.medium = medium
         global_food+=1
 
         solution = model.optimize()
         print(solution)
-        #print(f"\nObjective value of solution: {solution.objective_value}")
-        Solutions.append(solution.objective_value)
+        Solutions.append(solution.objective_value)          #save objective value
 
 
 run_full()
 
-workbook = xlsxwriter.Workbook('TestA_MW.xlsx')
+workbook = xlsxwriter.Workbook('YL_growth_media.xlsx')      #create .xlsx
 worksheet = workbook.add_worksheet()
+worksheet.write(0,0,"This C-source is set to 1000")         #head of table
+worksheet.write(0,1,"objective value")
 for row_num,data in enumerate(Solutions):
-    worksheet.write(row_num,0, data)
+    worksheet.write(row_num+1,0, Food[row_num])             #write name of C-Source in first column
+    worksheet.write(row_num+1,1, data)                      #write objective value for this c-source
 workbook.close()
+print("YL_growth_media.xlsx was written")
