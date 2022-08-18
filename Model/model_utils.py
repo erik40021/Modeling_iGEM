@@ -3,11 +3,21 @@
 # Don't forget: for almost every thing we want to do, there might already 
 # be a perfectly fitting function!
 
-from inspect import stack
 import math
 from matplotlib import pyplot as plt
 import numpy as np
-import xlsxwriter
+import xlsxreader, xlsxwriter
+
+def medium_objectivevalue_xlsx(Food,Solutions):
+    workbook = xlsxwriter.Workbook('YL_growth_media.xlsx')      #create .xlsx
+    worksheet = workbook.add_worksheet()
+    worksheet.write(0,0,"This C-source is set to 1000")         #head of table
+    worksheet.write(0,1,"objective value")
+    for row_num,data in enumerate(Solutions):
+        worksheet.write(row_num+1,0, Food[row_num])             #write name of C-Source in first column
+        worksheet.write(row_num+1,1, data)                      #write objective value for this c-source
+    workbook.close()
+    print("YL_growth_media.xlsx was written")
 
 
 def plot_fluxes(res, labels, colors, stack_indices, bar_width=0.1, size=(10,7), save_as=None):

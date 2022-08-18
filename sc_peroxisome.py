@@ -6,10 +6,10 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 #class-specific constants:
-OVEREXPRESSION_LOWER_BOUND = 0.2 # or maybe not class-sepcific at the end? -> then import from constants.py
+OVEREXPRESSION_LOWER_BOUND = 0.0 # or maybe not class-sepcific at the end? -> then import from constants.py
 KNOCK_DOWN_HIGHER_BOUND = 500
-APINENE_OBJECTIVE_COEFFICIENT = 0.2
-GROWTH_OBJECTIVE_COEFFICIENT = 0.8
+APINENE_OBJECTIVE_COEFFICIENT = 1.0
+GROWTH_OBJECTIVE_COEFFICIENT = 1 - APINENE_OBJECTIVE_COEFFICIENT
 FLUX_LABELS = ["biomass", "fpp_prod", "aps_gpp_apinene", "aggpps2_gpp", "npp_prod", "aps_npp_apinene", "mfps144_gpp"]
 COLORS = ['seagreen', 'yellow', 'red', 'cornflowerblue', 'sandybrown', 'darkred', 'lightsteelblue']
 STACK_INDICES = [(5,6), (2,3)]
@@ -46,14 +46,15 @@ CO2 = reference.metabolites.get_by_id("s_0462")
 Diphosphate = reference.metabolites.get_by_id("s_0638")
 
 # initilize reaction obchange_info_offsetects for heterologous reactions
-Erg10_reaction = Reaction(id="MVA1", name="2.0 Acetyl-CoA --> 1.0 Acetoacetyl-CoA + 1.0 CoA", upper_bound=1000.0)
+Erg10_reaction = Reaction(id="MVA1", name="2.0 Acetyl-CoA --> 1.0 Acetoacetyl-CoA + 1.0 CoA", upper_bound=1000.0, lower_bound=0)
+
 Erg13_reaction = Reaction(id="MVA2", name="1.0 Acetyl-CoA + 1.0 Acetoacetyl-CoA --> 1.0 HMG-CoA + 1.0 CoA", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
 tHMGR_reaction = Reaction(id="MVA3", name="1.0 HMG-CoA + 2.0 NADPH + 2 h_p --> 1.0 Mevalonate + 2.0 NADP + 1.0 CoA", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
 
 Erg12_reaction = Reaction(id="MVA4", name="1.0 Mevalonate + 1.0 ATP --> 1.0 Mevalonat-P + 1.0 ADP + 1.0 h_p", upper_bound=1000.0)
 Erg8_reaction = Reaction(id="MVA5", name="1.0 Mevalonate-P + 1.0 ATP --> 1.0 Mevalonat-PP + 1.0 ADP", upper_bound=1000.0)
-Erg19_reaction = Reaction(id="MVA6", name="1.0 Mevalonate-PP + 1.0 ATP --> 1.0 IPP + 1.0 ADP + 1.0 PO4 + 1.0 CO2", lower_bound=None, upper_bound=1000.0) #irreversible reactions, so lower_bound = None
-Idi1_reaction = Reaction(id="MVA7", name="1.0 IPP <--> 1.0 DMAPP", upper_bound=1000.0)
+Erg19_reaction = Reaction(id="MVA6", name="1.0 Mevalonate-PP + 1.0 ATP --> 1.0 IPP + 1.0 ADP + 1.0 PO4 + 1.0 CO2", upper_bound=1000.0, lower_bound=0)
+Idi1_reaction = Reaction(id="MVA7", name="1.0 IPP <--> 1.0 DMAPP", upper_bound=1000.0, lower_bound=-1000) #reversible reaction
 
 AgGPPS2_reaction = Reaction(id="MVA8", name="1.0 IPP + 1.0 DMAPP --> 1.0 GPP + 1.0 Diphosphate", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
 mFPS144_GPP_reaction = Reaction(id="MVA9", name="1.0 IPP + 1.0 DMAPP --> 1.0 GPP + 1.0 Diphosphate", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
@@ -61,7 +62,7 @@ mFPS144_FPP_reaction = Reaction(id="MVA10", name="1.0 IPP + 1.0 DMAPP --> 1.0 FP
 SiNPPS1_reaction = Reaction(id="MVA11", name="1.0 IPP + 1.0 DMAPP --> 1.0 NPP + 1.0 Diphosphate", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
 APS_npp_reaction = Reaction(id="MVA12", name="1.0 NPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
 APS_gpp_reaction = Reaction(id="MVA13", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0, lower_bound=OVEREXPRESSION_LOWER_BOUND)
-APinene_con_reaction = Reaction(id="r_apinene_con", name="1.0 Alpha-Pinene ->", upper_bound=1000.0)
+APinene_con_reaction = Reaction(id="r_apinene_con", name="1.0 Alpha-Pinene ->", upper_bound=1000.0, lower_bound=0)
 
 
 # Add metabolites and reaction stoichiometry to reaction obchange_info_offsetects
@@ -211,6 +212,7 @@ def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=
     print("gpp production flux: "+ str(gpp_prod) + " of which")
     print(" - "+str(l[3])+" by AgGPPS2"); print(" - "+str(l[6])+" by mFPS144")
     print("npp production flux: " + str(l[4]))
+    print("-> SOLVER STATUS: "+ solution.status + " <-")
     return l + [change_biological]
 
 
@@ -218,6 +220,7 @@ def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=
 for reaction in reactionlist:
     model.add_reaction(reaction)
 
+#write_yeast_model(model)
 
 # --- Step 2: FBA of both models ---
 referenceState = reference.optimize()

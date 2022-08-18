@@ -3,10 +3,11 @@ from Model.model_utils import plot_fluxes, summarize_properties
 from cobra import Model, Reaction, Metabolite
 
 #constants:
-OVEREXPRESSION_LOWER_BOUND = 0.2
+OVEREXPRESSION_LOWER_BOUND = 0.0
 KNOCK_DOWN_HIGHER_BOUND = 500
-APINENE_OBJECTIVE_COEFFICIENT = 0.2
-GROWTH_OBJECTIVE_COEFFICIENT = 0.8
+APINENE_OBJECTIVE_COEFFICIENT = 1.0
+GROWTH_OBJECTIVE_COEFFICIENT = 1.0 - APINENE_OBJECTIVE_COEFFICIENT
+GROWTH_LOWER_BOUND = 0.0
 FLUX_LABELS = ["biomass", "fpp_prod", "aps_gpp_apinene", "erg20_gpp", "npp_prod", "aps_npp_apinene", "aggpps2_gpp", "mfps144_gpp"]
 COLORS = ['seagreen', 'yellow', 'red', 'royalblue', 'sandybrown', 'darkred', 'cornflowerblue', 'lightsteelblue']
 STACK_INDICES = [(5,6,7), (2,3,3)]
@@ -47,14 +48,20 @@ def simulate_variant_3():
         Erg20 regulation '''
     model, results = build_basic_model()
     # add manipulations one by one and print reactions fluxes every time
+    # add overexpressions of erg13 and tHMGR
+    model.reactions.get_by_id("r_0559").lower_bound = OVEREXPRESSION_LOWER_BOUND
+    results.append(solve_and_get_reaction_fluxes(model, "Erg13 ovexp"))
+    model.reactions.get_by_id("r_0558").lower_bound = OVEREXPRESSION_LOWER_BOUND
+    results.append(solve_and_get_reaction_fluxes(model, "tHMGR ovexp"))
+    model.reactions.get_by_id("r_gpp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
+    results.append(solve_and_get_reaction_fluxes(model, "APS(GPP->) ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
     add_npp_pathway(model)
     results.append(solve_and_get_reaction_fluxes(model, "+SiNPPS2"))
-    # add overexpressions of new genes
-    model.reactions.get_by_id("r_gpp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
-    model.reactions.get_by_id("r_npp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
-    results.append(solve_and_get_reaction_fluxes(model, "APS ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
     model.reactions.get_by_id("r_dmapp_sinpps2_npp").lower_bound = OVEREXPRESSION_LOWER_BOUND
     results.append(solve_and_get_reaction_fluxes(model, "SiNPPS2 ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
+    model.reactions.get_by_id("r_npp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
+    results.append(solve_and_get_reaction_fluxes(model, "APS(NPP->) ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
+    
     # add downregulation of Erg20
     model.reactions.get_by_id("r_0355").higher_bound = KNOCK_DOWN_HIGHER_BOUND # gpp production
     model.reactions.get_by_id("r_0462").higher_bound = KNOCK_DOWN_HIGHER_BOUND # fpp production
@@ -110,7 +117,7 @@ def build_basic_model():
     reactions_list = list()
     # new metabolites:
     aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
-    # biological reaction: 1.0 GPP -> 1.0 aPinene
+    # biological reaction: 1.0 GPP -> 1.0 aPinene + 1.0 PPi
     react_gpp_alphapinene = Reaction('r_gpp_aps_apinene')
     react_gpp_alphapinene.name = 'GPP -> aPinene + PPi'
     react_gpp_alphapinene.subsystem = 'Cytoplasm'
@@ -138,6 +145,7 @@ def build_basic_model():
 
     model.objective = {model.reactions.get_by_id("r_apinene_con"): APINENE_OBJECTIVE_COEFFICIENT, 
                     model.reactions.get_by_id("r_2111"): GROWTH_OBJECTIVE_COEFFICIENT}
+    model.reactions.get_by_id("r_2111").lower_bound = GROWTH_LOWER_BOUND
     results.append(solve_and_get_reaction_fluxes(model, "GPP -> aPinene", "and objective to aPinene:"
                     +str(APINENE_OBJECTIVE_COEFFICIENT) + "/growth:" + str(GROWTH_OBJECTIVE_COEFFICIENT)))
     return model, results
@@ -171,6 +179,8 @@ def add_erg20_ko_and_alternative(model):
     })
     react_ipp_dmapp_gpp.gene_reaction_rule = '(mFPS144)'
 
+    # internal GPP production: s_0943 + s_1376 --> s_0633 + s_0745 (exactly the same)
+
     react_ipp_gpp_fpp = Reaction('r_ipp_gpp_mfps144_fpp')
     react_ipp_gpp_fpp.name = 'IPP + GPP -> FPP + PPi'
     react_ipp_gpp_fpp.subsystem = 'Cytoplasm'
@@ -189,7 +199,7 @@ def add_erg20_ko_and_alternative(model):
     reactions_list.append(react_ipp_gpp_fpp)
     model.add_reactions(reactions_list)
 
-    model.genes.YJL167W.knock_out() # knocks out Erg20
+    #model.genes.YJL167W.knock_out() # knocks out Erg20
 
 
 def add_npp_pathway(model):
@@ -246,6 +256,7 @@ def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=
     print(" - "+str(l[6])+" by AgGPPS2"); print(" - "+str(l[7])+" by mFPS144")
     print(" - "+str(l[3])+" by Erg20"); 
     print("npp production flux: " + str(l[4]))
+    print("-> SOLVER STATUS: "+ solution.status + " <-")
     return l[:len(l)-1] + [change_biological]
     
 
