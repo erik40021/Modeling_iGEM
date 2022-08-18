@@ -12,6 +12,15 @@ FLUX_LABELS = ["biomass", "fpp_prod", "aps_gpp_apinene", "erg20_gpp", "npp_prod"
 COLORS = ['seagreen', 'yellow', 'red', 'royalblue', 'sandybrown', 'darkred', 'cornflowerblue', 'lightsteelblue']
 STACK_INDICES = [(5,6,7), (2,3,3)]
 
+def simulate_model_all_in_one():
+    model = read_yeast_model()
+    add_aps(model)
+    add_erg20_ko_and_alternative(model)
+    add_npp_pathway(model)
+    model.objective = {model.reactions.get_by_id("r_apinene_con"): 1.0, 
+                    model.reactions.get_by_id("r_2111"): 0.0}
+    return model
+    
 def simulate_variant_1():
     ''' simulates first sc_cyto variant with two overexpressions (Erg13 and tHMGR) and one knock-in (APS) '''
     model, results = build_basic_model()
@@ -44,7 +53,7 @@ def simulate_variant_2():
 
 
 def simulate_variant_3():
-    ''' simulates third sc_cyto variant with two knock-ins (APS, SiNPPS2) and cupper-dependant promoter pCTR3 for
+    ''' simulates third sc_cyto variant with two knock-ins (APS, SiNPPS2) and cupper-dependent promoter pCTR3 for
         Erg20 regulation '''
     model, results = build_basic_model()
     # add manipulations one by one and print reactions fluxes every time
@@ -110,10 +119,7 @@ def simulate_all_changes():
     results.append(solve_and_get_reaction_fluxes(model, "Erg20-KD by pCTR3", "higher bound=" + str(KNOCK_DOWN_HIGHER_BOUND)))
     plot_fluxes(results, FLUX_LABELS, COLORS, STACK_INDICES, 0.1, (15,8), save_as='scc_all_manipulations.png')
 
-def build_basic_model():
-    results = []
-    model = read_yeast_model()
-    results.append(solve_and_get_reaction_fluxes(model, "before"))
+def add_aps(model):
     reactions_list = list()
     # new metabolites:
     aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
@@ -143,6 +149,11 @@ def build_basic_model():
     reactions_list.append(react_alphapinen_con)
     model.add_reactions(reactions_list)
 
+def build_basic_model():
+    results = []
+    model = read_yeast_model()
+    results.append(solve_and_get_reaction_fluxes(model, "before"))
+    add_aps(model)
     model.objective = {model.reactions.get_by_id("r_apinene_con"): APINENE_OBJECTIVE_COEFFICIENT, 
                     model.reactions.get_by_id("r_2111"): GROWTH_OBJECTIVE_COEFFICIENT}
     model.reactions.get_by_id("r_2111").lower_bound = GROWTH_LOWER_BOUND
