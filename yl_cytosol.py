@@ -7,8 +7,8 @@ from cobra.io import read_sbml_model
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.2
 KNOCK_DOWN_HIGHER_BOUND = 500
-APINENE_OBJECTIVE_COEFFICIENT = 0.2
-GROWTH_OBJECTIVE_COEFFICIENT = 0.8
+APINENE_OBJECTIVE_COEFFICIENT = 1.0
+GROWTH_OBJECTIVE_COEFFICIENT = 0.0
 
 # --- Step 1: Create reference model and model with heterologous reactions for alpha-pienen synthesis in cytosol ---
 
@@ -116,7 +116,7 @@ def erg20_knockdown():
 def erg13_overexpression():
     model.reactions.get_by_id("HMGCOAS").lower_bound=OVEREXPRESSION_LOWER_BOUND
 
-def run_full(Food,Nutrients):
+def run_medium_test(Food,Nutrients):
     Solutions=[]
     #activate functions to build model
     erg13_overexpression()
