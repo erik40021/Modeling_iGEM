@@ -3,7 +3,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
 from cobra.io import read_sbml_model
-import xlsxreader, xlsxwriter
+
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.2
 KNOCK_DOWN_HIGHER_BOUND = 500
@@ -11,24 +11,6 @@ APINENE_OBJECTIVE_COEFFICIENT = 0.2
 GROWTH_OBJECTIVE_COEFFICIENT = 0.8
 
 # --- Step 1: Create reference model and model with heterologous reactions for alpha-pienen synthesis in cytosol ---
-
-Food=[                      #list carbon sources here
-"EX_glc_LPAREN_e_RPAREN_",
-"EX_inost_LPAREN_e_RPAREN_",
-"trehalose_c_tp",
-"EX_xyl_D_LPAREN_e_RPAREN_"
-]
-Nutrients=[                 #list other nutrients here
-"EX_h2o_LPAREN_e_RPAREN_",
-"EX_h_LPAREN_e_RPAREN_",
-"EX_k_LPAREN_e_RPAREN_",
-"EX_na1_LPAREN_e_RPAREN_",
-"EX_nh4_LPAREN_e_RPAREN_",
-"EX_o2_LPAREN_e_RPAREN_",
-"EX_pi_LPAREN_e_RPAREN_",
-"EX_so4_LPAREN_e_RPAREN_",
-]
-Solutions=[]
 
 # create reference and engineered model
 model = read_sbml_model("Data/iYLI647.xml")
@@ -134,7 +116,8 @@ def erg20_knockdown():
 def erg13_overexpression():
     model.reactions.get_by_id("HMGCOAS").lower_bound=OVEREXPRESSION_LOWER_BOUND
 
-def run_full():
+def run_full(Food,Nutrients):
+    Solutions=[]
     #activate functions to build model
     erg13_overexpression()
     MEV_Pathway()
@@ -160,21 +143,8 @@ def run_full():
         medium=model.medium
         medium[f]=1000                      #add only one food
         model.medium = medium
-        global_food+=1
 
         solution = model.optimize()
         print(solution)
         Solutions.append(solution.objective_value)          #save objective value
-
-
-run_full()
-
-workbook = xlsxwriter.Workbook('YL_growth_media.xlsx')      #create .xlsx
-worksheet = workbook.add_worksheet()
-worksheet.write(0,0,"This C-source is set to 1000")         #head of table
-worksheet.write(0,1,"objective value")
-for row_num,data in enumerate(Solutions):
-    worksheet.write(row_num+1,0, Food[row_num])             #write name of C-Source in first column
-    worksheet.write(row_num+1,1, data)                      #write objective value for this c-source
-workbook.close()
-print("YL_growth_media.xlsx was written")
+    return Solutions
