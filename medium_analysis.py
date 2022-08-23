@@ -28,5 +28,6 @@ while cnt<len(all):
     List.append(all.iat[cnt,0])
     cnt+=1
 
-Solutions=run_medium_test(List,Nutrients)       #run analysis
-medium_objectivevalue_xlsx(List,Solutions)      #print to xlsx
+Solutions,Formula=run_medium_test(List,Nutrients)       #run analysis
+
+medium_objectivevalue_xlsx(List,Solutions,Formula)      #print to xlsx
