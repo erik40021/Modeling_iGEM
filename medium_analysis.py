@@ -30,4 +30,4 @@ while cnt<len(all):
 
 Solutions,Formula=run_medium_test(List,Nutrients)       #run analysis
 
-medium_objectivevalue_xlsx(List,Solutions,Formula)      #print to xlsx
+medium_objectivevalue_xlsx(List,Solutions)      #print to xlsx

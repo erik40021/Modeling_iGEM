@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import xlsxreader, xlsxwriter
 
-def medium_objectivevalue_xlsx(Food,Solutions,Formula):
+def medium_objectivevalue_xlsx(Food,Solutions):
     workbook = xlsxwriter.Workbook('Output/YL_growth_media.xlsx')      #create .xlsx
     worksheet = workbook.add_worksheet()
     worksheet.write(0,0,"This C-source is set to 1000")         #head of table
@@ -19,7 +19,6 @@ def medium_objectivevalue_xlsx(Food,Solutions,Formula):
         if data>0:                                               #only print if solution is feasible
             worksheet.write(line+1,0, Food[row_num])             #write name of C-Source in first column
             worksheet.write(line+1,1, data)                      #write objective value for this c-source
-            worksheet.write(line+1,2, Formula[row_num])
             line+=1
         row_num+=1
     workbook.close()

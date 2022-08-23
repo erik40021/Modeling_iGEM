@@ -116,9 +116,11 @@ def erg20_knockdown():
 def erg13_overexpression():
     model.reactions.get_by_id("HMGCOAS").lower_bound=OVEREXPRESSION_LOWER_BOUND
 
+
+
+
 def run_medium_test(Food,Nutrients):
     Solutions=[]
-    Formula=[]
     #activate functions to build model
     erg13_overexpression()
     MEV_Pathway()
@@ -144,10 +146,8 @@ def run_medium_test(Food,Nutrients):
 
         solution = model.optimize()
         Solutions.append(solution.objective_value)          #save objective value
-        Left=(model.reactions.get_by_id(f).metabolites)
-        Me=list(Left)[0].name
-        Formula.append(Me)
+        
     
 
-    print(Solutions,Formula)
-    return Solutions,Formula
+    print(Solutions)
+    return Solutions
