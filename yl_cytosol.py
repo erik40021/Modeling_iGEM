@@ -14,22 +14,23 @@ GROWTH_OBJECTIVE_COEFFICIENT = 1.0
 # --- Step 1: Create reference model and model with heterologous reactions for alpha-pienen synthesis in cytosol ---
 
 # create reference and engineered model
-model = read_sbml_model("Data/iYLI647.xml")
+#model = read_sbml_model("Data/iYLI647.xml")
+model = read_sbml_model("Data/YL_to_Lasse.xml")
 reactionlist =[]
 
-aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
-NPP = Metabolite('NPP', formula='C5H9O7P2', name='NPP', compartment='c' )
-GPP = model.metabolites.get_by_id("grdp_c")
-FPP = model.metabolites.get_by_id("frdp_c")
-IPP = model.metabolites.get_by_id("ipdp_c")
-DMAPP = model.metabolites.get_by_id("dmpp_c")
-HMGR = model.metabolites.get_by_id("hmgcoa_c")
-MEV = model.metabolites.get_by_id("mev_R_c")
-NADPH = model.metabolites.get_by_id("nadph_c")
-NADP = model.metabolites.get_by_id("nadp_c")
-H = model.metabolites.get_by_id("h_c")
-COA = model.metabolites.get_by_id("coa_c")
-Diphosphate = model.metabolites.get_by_id("ppi_c")
+#aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
+#NPP = Metabolite('NPP', formula='C5H9O7P2', name='NPP', compartment='c' )
+#GPP = model.metabolites.get_by_id("grdp_c")
+#FPP = model.metabolites.get_by_id("frdp_c")
+#IPP = model.metabolites.get_by_id("ipdp_c")
+#DMAPP = model.metabolites.get_by_id("dmpp_c")
+#HMGR = model.metabolites.get_by_id("hmgcoa_c")
+#MEV = model.metabolites.get_by_id("mev_R_c")
+#NADPH = model.metabolites.get_by_id("nadph_c")
+#NADP = model.metabolites.get_by_id("nadp_c")
+#H = model.metabolites.get_by_id("h_c")
+#COA = model.metabolites.get_by_id("coa_c")
+#Diphosphate = model.metabolites.get_by_id("ppi_c")
 
 
 def AP_Syn():
@@ -135,21 +136,21 @@ def build_xml():
 
 def simple_run():
     #activate functions to build model
-    erg13_overexpression()
-    MEV_Pathway()
-    GPP_Pathway()
-    NPP_Pathway()
-    erg20_knockdown() #erg20 knockdown 
+    #erg13_overexpression()
+    #MEV_Pathway()
+    #GPP_Pathway()
+    #NPP_Pathway()
+    #erg20_knockdown() #erg20 knockdown 
     #model.genes.YALI0E05753g.knock_out() #erg20 knockout
-    AP_Syn()
-    for reaction in reactionlist:
-        model.add_reaction(reaction)
+    #AP_Syn()
+    #for reaction in reactionlist:
+    #    model.add_reaction(reaction)
     model.objective={model.reactions.get_by_id("Biomass_Climit"):GROWTH_OBJECTIVE_COEFFICIENT, model.reactions.get_by_id("aPinene_ex"):APINENE_OBJECTIVE_COEFFICIENT}
     solution = model.optimize()
     print(solution.objective_value)
     return 0
 
-#simple_run()
+simple_run()
 
 def run_medium_test(Food,Nutrients):
     Solutions=[]
