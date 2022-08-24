@@ -30,7 +30,14 @@ NADP = model.metabolites.get_by_id("nadp_c")
 H = model.metabolites.get_by_id("h_c")
 COA = model.metabolites.get_by_id("coa_c")
 Diphosphate = model.metabolites.get_by_id("ppi_c")
+Fat = model.metabolites.get_by_id("triglyc_SC_e")
 
+def EX_Fat():
+    EX_Fat_reaction=Reaction(id="EX_Fat_LPAREN_e_RPAREN_",name="-->Fat extracellular",subsystem="Extracellular")
+    EX_Fat_reaction.add_metabolites({
+        Fat: 1.0
+    })
+    reactionlist.append(EX_Fat_reaction)
 
 def AP_Syn():
     APS_GPP_reaction = Reaction(id="aPinen_gpp_s", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", subsystem="Cytoplasm",lower_bound=OVEREXPRESSION_LOWER_BOUND, upper_bound=1000.0)
@@ -149,11 +156,12 @@ def simple_run():
     print(solution.objective_value)
     return 0
 
-simple_run()
+#simple_run()
 
 def run_medium_test(Food,Nutrients):
     Solutions=[]
     #activate functions to build model
+    EX_Fat()
     erg13_overexpression()
     MEV_Pathway()
     GPP_Pathway()
@@ -179,7 +187,5 @@ def run_medium_test(Food,Nutrients):
         solution = model.optimize()
         Solutions.append(solution.objective_value)          #save objective value
         
-    
-
     print(Solutions)
     return Solutions
