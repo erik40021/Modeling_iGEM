@@ -3,12 +3,13 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
 from cobra.io import read_sbml_model
+from cobra.io import write_sbml_model
 
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.2
 KNOCK_DOWN_HIGHER_BOUND = 500
-APINENE_OBJECTIVE_COEFFICIENT = 1.0
-GROWTH_OBJECTIVE_COEFFICIENT = 0.0
+APINENE_OBJECTIVE_COEFFICIENT = 0.0
+GROWTH_OBJECTIVE_COEFFICIENT = 1.0
 
 # --- Step 1: Create reference model and model with heterologous reactions for alpha-pienen synthesis in cytosol ---
 
@@ -116,6 +117,40 @@ def erg20_knockdown():
 def erg13_overexpression():
     model.reactions.get_by_id("HMGCOAS").lower_bound=OVEREXPRESSION_LOWER_BOUND
 
+def build_xml():
+    #activate functions to build model
+    erg13_overexpression()
+    MEV_Pathway()
+    GPP_Pathway()
+    NPP_Pathway()
+    erg20_knockdown() #erg20 knockdown 
+    #model.genes.YALI0E05753g.knock_out() #erg20 knockout
+    AP_Syn()
+    for reaction in reactionlist:
+        model.add_reaction(reaction)
+    write_sbml_model(model,"YL_to_Lasse.xml")
+
+#build_xml()
+
+
+def simple_run():
+                                #activate functions to build model
+    erg13_overexpression()
+    MEV_Pathway()
+    GPP_Pathway()
+    NPP_Pathway()
+    erg20_knockdown()
+    #model.genes.YALI0E05753g.knock_out() #erg20 knockout
+    AP_Syn()
+    for reaction in reactionlist:
+        model.add_reaction(reaction)
+    model.objective={model.reactions.get_by_id("Biomass_Climit"):GROWTH_OBJECTIVE_COEFFICIENT, model.reactions.get_by_id("aPinene_ex"):APINENE_OBJECTIVE_COEFFICIENT}
+    solution = model.optimize()
+    print(solution.objective_value)
+    return 0
+
+simple_run()
+
 def run_medium_test(Food,Nutrients):
     Solutions=[]
     #activate functions to build model
@@ -138,13 +173,13 @@ def run_medium_test(Food,Nutrients):
             medium[i]=0
         for n in Nutrients:                 #add nutrients
             medium[n]=1000
-        model.medium = medium
-        #change medium
-        medium=model.medium
-        medium[f]=1000                      #add only one food
+        medium[f]=10                   #add only one food
         model.medium = medium
 
         solution = model.optimize()
-        print(solution)
         Solutions.append(solution.objective_value)          #save objective value
+        
+    
+
+    print(Solutions)
     return Solutions
