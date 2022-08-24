@@ -6,7 +6,7 @@
 import math
 from matplotlib import pyplot as plt
 import numpy as np
-import xlsxreader, xlsxwriter
+import xlsxwriter
 
 def medium_objectivevalue_xlsx(Food,Solutions):
     workbook = xlsxwriter.Workbook('YL_growth_media.xlsx')      #create .xlsx

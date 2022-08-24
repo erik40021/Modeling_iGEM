@@ -8,19 +8,145 @@ KNOCK_DOWN_HIGHER_BOUND = 500
 APINENE_OBJECTIVE_COEFFICIENT = 1.0
 GROWTH_OBJECTIVE_COEFFICIENT = 1.0 - APINENE_OBJECTIVE_COEFFICIENT
 GROWTH_LOWER_BOUND = 0.0
+
+
+def simple_run(variant_type="GPP"):
+    # builds and returns model with heterologuous reactions
+    model = read_yeast_model()
+    add_aps(model)
+    if variant_type == "GPP":
+        add_gpp_pathway(model)
+    elif variant_type == "NPP":
+        add_npp_pathway(model)
+    return model
+
+# to save gpp model use e.g.:
+# "write_yeast_model(gpp_model, os.path.join(os.getcwd(),"Data/sc_cyto_gpp_manipulated.xml"))"
+
+def add_aps(model):
+    reactions_list = list()
+    # new metabolites:
+    aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
+    # biological reaction: 1.0 GPP -> 1.0 aPinene + 1.0 PPi
+    react_gpp_alphapinene = Reaction('r_gpp_aps_apinene')
+    react_gpp_alphapinene.name = 'GPP -> aPinene + PPi'
+    react_gpp_alphapinene.subsystem = 'Cytoplasm'
+    react_gpp_alphapinene.lower_bound = 0.  # This is the default
+    react_gpp_alphapinene.upper_bound = 1000.  # This is the default
+    react_gpp_alphapinene.add_metabolites({
+        model.metabolites.get_by_id("s_0745"): -1.0, # GPP (C10H17O7P2)
+        model.metabolites.get_by_id("s_0633"): 1.0, # diphosphate/ppi (HO7P2)
+        aPinene: 1.0
+    })
+    react_gpp_alphapinene.gene_reaction_rule = '(APS)'
+    
+    # reaction that consumes aPinene
+    react_alphapinen_con = Reaction('r_apinene_con')
+    react_alphapinen_con.name = 'aPinene -> '
+    react_alphapinen_con.subsystem = 'Cytoplasm'
+    react_alphapinen_con.lower_bound = 0.  # This is the default
+    react_alphapinen_con.upper_bound = 1000.  # This is the default
+    react_alphapinen_con.add_metabolites({
+        aPinene: -1.0
+    })
+    reactions_list.append(react_gpp_alphapinene)
+    reactions_list.append(react_alphapinen_con)
+    model.add_reactions(reactions_list)
+
+def add_gpp_pathway(model):
+    reactions_list = list()
+    react_dmapp_gpp = Reaction('r_dmapp_aggpps2_gpp')
+    react_dmapp_gpp.name = 'IPP + DMAPP -> GPP + PPi'
+    react_dmapp_gpp.subsystem = 'Cytoplasm'
+    react_dmapp_gpp.lower_bound = 0.  # This is the default
+    react_dmapp_gpp.upper_bound = 1000.  # This is the default
+    react_dmapp_gpp.add_metabolites({
+        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_0745"): 1.0, # GPP (C10H17O7P2)
+        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
+    })
+    react_dmapp_gpp.gene_reaction_rule = '(AgGPPS2)'
+
+    react_ipp_dmapp_gpp = Reaction('r_ipp_dmapp_mfps144_gpp')
+    react_ipp_dmapp_gpp.name = 'IPP + DMAPP -> GPP + PPi'
+    react_ipp_dmapp_gpp.subsystem = 'Cytoplasm'
+    react_ipp_dmapp_gpp.lower_bound = 0.  # This is the default
+    react_ipp_dmapp_gpp.upper_bound = 1000.  # This is the default
+    react_ipp_dmapp_gpp.add_metabolites({
+        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_0745"): 1.0, # GPP (C10H17O7P2)
+        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
+    })
+    react_ipp_dmapp_gpp.gene_reaction_rule = '(mFPS144)'
+
+    # internal GPP production: s_0943 + s_1376 --> s_0633 + s_0745 (exactly the same)
+
+    react_ipp_gpp_fpp = Reaction('r_ipp_gpp_mfps144_fpp')
+    react_ipp_gpp_fpp.name = 'IPP + GPP -> FPP + PPi'
+    react_ipp_gpp_fpp.subsystem = 'Cytoplasm'
+    react_ipp_gpp_fpp.lower_bound = 0.  # This is the default
+    react_ipp_gpp_fpp.upper_bound = 1000.  # This is the default
+    react_ipp_gpp_fpp.add_metabolites({
+        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_0745"): -1.0, # GPP (C10H17O7P2)
+        model.metabolites.get_by_id("s_0190"): 1.0, # FPP (C15H25O7P2)
+        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
+    }) # TODO: set upper bound to something > 1000 because of catalytic preference of mFPS144 for GPP
+    react_ipp_gpp_fpp.gene_reaction_rule = '(mFPS144)'
+
+    reactions_list.append(react_dmapp_gpp)
+    reactions_list.append(react_ipp_dmapp_gpp)
+    reactions_list.append(react_ipp_gpp_fpp)
+    model.add_reactions(reactions_list)
+
+    model.genes.YJL167W.knock_out() # knocks out Erg20
+
+
+def add_npp_pathway(model):
+    reactions_list = list()
+    npp = Metabolite('NPP', formula='C10H17O7P2', name='Neryl pyrophosphate', charge=-3, compartment='c')
+    react_dmapp_npp = Reaction('r_dmapp_sinpps2_npp')
+    react_dmapp_npp.name = 'IPP + DMAPP -> NPP + PPi'
+    react_dmapp_npp.subsystem = 'Cytoplasm'
+    react_dmapp_npp.lower_bound = 0.  # This is the default
+    react_dmapp_npp.upper_bound = 1000.  # This is the default
+    react_dmapp_npp.add_metabolites({
+        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
+        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
+        npp: 1.0,
+        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
+    })
+    react_dmapp_npp.gene_reaction_rule = '(SiNPPS2)'
+
+    react_npp_alphapinene = Reaction('r_npp_aps_apinene')
+    react_npp_alphapinene.name = 'NPP -> aPinene + PPi'
+    react_npp_alphapinene.subsystem = 'Cytoplasm'
+    react_npp_alphapinene.lower_bound = 0.  # This is the default
+    react_npp_alphapinene.upper_bound = 1000.  # This is the default
+    react_npp_alphapinene.add_metabolites({
+        npp: -1.0, # (C10H17O7P2)
+        model.metabolites.get_by_id("aPinene"): 1.0, # alphapinene (C10H16)
+        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
+    })
+    react_npp_alphapinene.gene_reaction_rule = '(APS)'
+
+    reactions_list.append(react_dmapp_npp)
+    reactions_list.append(react_npp_alphapinene)
+    model.add_reactions(reactions_list)
+    
+
+
+
+
+# --- simulation functions for step-by-step plotting ---
+
+# visualisation constants 
 FLUX_LABELS = ["biomass", "fpp_prod", "aps_gpp_apinene", "erg20_gpp", "npp_prod", "aps_npp_apinene", "aggpps2_gpp", "mfps144_gpp"]
 COLORS = ['seagreen', 'yellow', 'red', 'royalblue', 'sandybrown', 'darkred', 'cornflowerblue', 'lightsteelblue']
 STACK_INDICES = [(5,6,7), (2,3,3)]
 
-def simulate_model_all_in_one():
-    model = read_yeast_model()
-    add_aps(model)
-    add_erg20_ko_and_alternative(model)
-    add_npp_pathway(model)
-    model.objective = {model.reactions.get_by_id("r_apinene_con"): 1.0, 
-                    model.reactions.get_by_id("r_2111"): 0.0}
-    return model
-    
 def simulate_variant_1():
     ''' simulates first sc_cyto variant with two overexpressions (Erg13 and tHMGR) and one knock-in (APS) '''
     model, results = build_basic_model()
@@ -38,7 +164,7 @@ def simulate_variant_2():
     ''' simulates second sc_cyto variant with three knock-ins (APS, AgGPPS2, mFPS144) and one knock-out (Erg20)'''
     model, results = build_basic_model()
     # add manipulations one by one and print reactions fluxes every time
-    add_erg20_ko_and_alternative(model)
+    add_gpp_pathway(model)
     results.append(solve_and_get_reaction_fluxes(model, "Erg20-KO +mFPS144 +AgGPPs"))
     # add overexpressions of new genes
     model.reactions.get_by_id("r_gpp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
@@ -93,7 +219,7 @@ def simulate_all_changes():
     model.reactions.get_by_id("r_gpp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
     results.append(solve_and_get_reaction_fluxes(model, "APS ovexp", "lower bound=" + str(OVEREXPRESSION_LOWER_BOUND)))
     # part 2:
-    add_erg20_ko_and_alternative(model)
+    add_gpp_pathway(model)
     results.append(solve_and_get_reaction_fluxes(model, "Erg20-KO +mFPS144 +AgGPPs"))
     # add overexpressions of new genes
     model.reactions.get_by_id("r_gpp_aps_apinene").lower_bound = OVEREXPRESSION_LOWER_BOUND
@@ -119,36 +245,6 @@ def simulate_all_changes():
     results.append(solve_and_get_reaction_fluxes(model, "Erg20-KD by pCTR3", "higher bound=" + str(KNOCK_DOWN_HIGHER_BOUND)))
     plot_fluxes(results, FLUX_LABELS, COLORS, STACK_INDICES, 0.1, (15,8), save_as='scc_all_manipulations.png')
 
-def add_aps(model):
-    reactions_list = list()
-    # new metabolites:
-    aPinene = Metabolite('aPinene', formula='C10H16', name='Alphapinene', compartment='c')
-    # biological reaction: 1.0 GPP -> 1.0 aPinene + 1.0 PPi
-    react_gpp_alphapinene = Reaction('r_gpp_aps_apinene')
-    react_gpp_alphapinene.name = 'GPP -> aPinene + PPi'
-    react_gpp_alphapinene.subsystem = 'Cytoplasm'
-    react_gpp_alphapinene.lower_bound = 0.  # This is the default
-    react_gpp_alphapinene.upper_bound = 1000.  # This is the default
-    react_gpp_alphapinene.add_metabolites({
-        model.metabolites.get_by_id("s_0745"): -1.0, # GPP (C10H17O7P2)
-        model.metabolites.get_by_id("s_0633"): 1.0, # diphosphate/ppi (HO7P2)
-        aPinene: 1.0
-    })
-    react_gpp_alphapinene.gene_reaction_rule = '(APS)'
-    
-    # reaction that consumes aPinene
-    react_alphapinen_con = Reaction('r_apinene_con')
-    react_alphapinen_con.name = 'aPinene -> '
-    react_alphapinen_con.subsystem = 'Cytoplasm'
-    react_alphapinen_con.lower_bound = 0.  # This is the default
-    react_alphapinen_con.upper_bound = 1000.  # This is the default
-    react_alphapinen_con.add_metabolites({
-        aPinene: -1.0
-    })
-    reactions_list.append(react_gpp_alphapinene)
-    reactions_list.append(react_alphapinen_con)
-    model.add_reactions(reactions_list)
-
 def build_basic_model():
     results = []
     model = read_yeast_model()
@@ -160,91 +256,6 @@ def build_basic_model():
     results.append(solve_and_get_reaction_fluxes(model, "GPP -> aPinene", "and objective to aPinene:"
                     +str(APINENE_OBJECTIVE_COEFFICIENT) + "/growth:" + str(GROWTH_OBJECTIVE_COEFFICIENT)))
     return model, results
-
-
-def add_erg20_ko_and_alternative(model):
-    reactions_list = list()
-    react_dmapp_gpp = Reaction('r_dmapp_aggpps2_gpp')
-    react_dmapp_gpp.name = 'IPP + DMAPP -> GPP + PPi'
-    react_dmapp_gpp.subsystem = 'Cytoplasm'
-    react_dmapp_gpp.lower_bound = 0.  # This is the default
-    react_dmapp_gpp.upper_bound = 1000.  # This is the default
-    react_dmapp_gpp.add_metabolites({
-        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
-        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
-        model.metabolites.get_by_id("s_0745"): 1.0, # GPP (C10H17O7P2)
-        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
-    })
-    react_dmapp_gpp.gene_reaction_rule = '(AgGPPS2)'
-
-    react_ipp_dmapp_gpp = Reaction('r_ipp_dmapp_mfps144_gpp')
-    react_ipp_dmapp_gpp.name = 'IPP + DMAPP -> GPP + PPi'
-    react_ipp_dmapp_gpp.subsystem = 'Cytoplasm'
-    react_ipp_dmapp_gpp.lower_bound = 0.  # This is the default
-    react_ipp_dmapp_gpp.upper_bound = 1000.  # This is the default
-    react_ipp_dmapp_gpp.add_metabolites({
-        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
-        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
-        model.metabolites.get_by_id("s_0745"): 1.0, # GPP (C10H17O7P2)
-        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
-    })
-    react_ipp_dmapp_gpp.gene_reaction_rule = '(mFPS144)'
-
-    # internal GPP production: s_0943 + s_1376 --> s_0633 + s_0745 (exactly the same)
-
-    react_ipp_gpp_fpp = Reaction('r_ipp_gpp_mfps144_fpp')
-    react_ipp_gpp_fpp.name = 'IPP + GPP -> FPP + PPi'
-    react_ipp_gpp_fpp.subsystem = 'Cytoplasm'
-    react_ipp_gpp_fpp.lower_bound = 0.  # This is the default
-    react_ipp_gpp_fpp.upper_bound = 1000.  # This is the default
-    react_ipp_gpp_fpp.add_metabolites({
-        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
-        model.metabolites.get_by_id("s_0745"): -1.0, # GPP (C10H17O7P2)
-        model.metabolites.get_by_id("s_0190"): 1.0, # FPP (C15H25O7P2)
-        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
-    }) # TODO: set upper bound to something > 1000 because of catalytic preference of mFPS144 for GPP
-    react_ipp_gpp_fpp.gene_reaction_rule = '(mFPS144)'
-
-    reactions_list.append(react_dmapp_gpp)
-    reactions_list.append(react_ipp_dmapp_gpp)
-    reactions_list.append(react_ipp_gpp_fpp)
-    model.add_reactions(reactions_list)
-
-    #model.genes.YJL167W.knock_out() # knocks out Erg20
-
-
-def add_npp_pathway(model):
-    reactions_list = list()
-    npp = Metabolite('NPP', formula='C10H17O7P2', name='Neryl pyrophosphate', charge=-3, compartment='c')
-    react_dmapp_npp = Reaction('r_dmapp_sinpps2_npp')
-    react_dmapp_npp.name = 'IPP + DMAPP -> NPP + PPi'
-    react_dmapp_npp.subsystem = 'Cytoplasm'
-    react_dmapp_npp.lower_bound = 0.  # This is the default
-    react_dmapp_npp.upper_bound = 1000.  # This is the default
-    react_dmapp_npp.add_metabolites({
-        model.metabolites.get_by_id("s_0934"): -1.0, # IPP (C5H9O7P2)
-        model.metabolites.get_by_id("s_1376"): -1.0, # DMAPP (C5H9O7P2)
-        npp: 1.0,
-        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
-    })
-    react_dmapp_npp.gene_reaction_rule = '(SiNPPS2)'
-
-    react_npp_alphapinene = Reaction('r_npp_aps_apinene')
-    react_npp_alphapinene.name = 'NPP -> aPinene + PPi'
-    react_npp_alphapinene.subsystem = 'Cytoplasm'
-    react_npp_alphapinene.lower_bound = 0.  # This is the default
-    react_npp_alphapinene.upper_bound = 1000.  # This is the default
-    react_npp_alphapinene.add_metabolites({
-        npp: -1.0, # (C10H17O7P2)
-        model.metabolites.get_by_id("aPinene"): 1.0, # alphapinene (C10H16)
-        model.metabolites.get_by_id("s_0633"): 1.0 # diphosphate/ppi (HO7P2)
-    })
-    react_npp_alphapinene.gene_reaction_rule = '(APS)'
-
-    reactions_list.append(react_dmapp_npp)
-    reactions_list.append(react_npp_alphapinene)
-    model.add_reactions(reactions_list)
-    
     
 def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=""):
     solution = model.optimize()
@@ -270,9 +281,6 @@ def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=
     print("-> SOLVER STATUS: "+ solution.status + " <-")
     return l[:len(l)-1] + [change_biological]
     
-
-
-
 
 
 
