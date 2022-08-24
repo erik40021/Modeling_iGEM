@@ -1,6 +1,6 @@
 from operator import index
 from old_yl_cyto import run_medium_test          #still needs rund_medium_test eqivalents from other Yeasts
-from Model.model_utils import medium_objectivevalue_xlsx
+from Utils.model_utils import medium_objectivevalue_xlsx
 import pandas as pd
 Food=[                      #list carbon sources here
 "EX_Fat_LPAREN_e_RPAREN_",
