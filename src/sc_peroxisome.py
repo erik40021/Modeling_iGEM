@@ -1,4 +1,4 @@
-from Data.yeastGEM_io import read_yeast_model, write_yeast_model
+from Model.yeastGEM_io import read_yeast_model, write_yeast_model
 from Model.model_utils import plot_fluxes, summarize_properties
 from cobra import Model, Reaction, Metabolite
 import pandas as pd
