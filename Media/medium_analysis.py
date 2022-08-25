@@ -1,8 +1,8 @@
 from operator import index
-from old_yl_cyto import run_medium_test          #still needs rund_medium_test eqivalents from other Yeasts
-from Utils.model_utils import medium_objectivevalue_xlsx
+from yl_cyto_old import run_medium_test          #still needs rund_medium_test eqivalents from other Yeasts
+from media_utils import medium_objectivevalue_xlsx
 import pandas as pd
-Food=[                      #list carbon sources here
+Food=[                      #list carbon sources here   #not used atm
 "EX_Fat_LPAREN_e_RPAREN_",
 "EX_glc_LPAREN_e_RPAREN_",
 "EX_inost_LPAREN_e_RPAREN_",
@@ -23,12 +23,12 @@ Nutrients=[                 #list other nutrients here
 ]
 
 CSource=[]
-all=pd.read_excel("Output/EX_Reactions.xlsx")          #List is used as C-Source and is generated from all EX_reactions
+all=pd.read_excel("./Output/Media/EX_Reactions.xlsx")          #List is used as C-Source and is generated from all EX_reactions
 cnt=0
 while cnt<len(all):
     CSource.append(all.iat[cnt,0])
     cnt+=1
 
-Solutions=run_medium_test(Food,Nutrients)       #run analysis
+Solutions=run_medium_test(CSource,Nutrients)       #run analysis
 
-medium_objectivevalue_xlsx(Food,Solutions)      #print to xlsx
+medium_objectivevalue_xlsx(CSource,Solutions)      #print to xlsx

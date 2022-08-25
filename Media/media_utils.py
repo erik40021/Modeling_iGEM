@@ -1,7 +1,7 @@
 import xlsxwriter
 
 def medium_objectivevalue_xlsx(Food,Solutions):
-    workbook = xlsxwriter.Workbook('Output/YL_growth_media.xlsx')      #create .xlsx
+    workbook = xlsxwriter.Workbook('Output/Media/YL_growth_media.xlsx')      #create .xlsx
     worksheet = workbook.add_worksheet()
     worksheet.write(0,0,"This C-source is set to 1000")         #head of table
     worksheet.write(0,1,"objective value")
