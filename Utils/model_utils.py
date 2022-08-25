@@ -8,6 +8,24 @@ from matplotlib import pyplot as plt
 import numpy as np
 import xlsxwriter
 
+def list_import_reactions(model):
+    '''
+    starts from the set of metabolites inside the extracellular space.
+    Caution: result contains duplicates. Filter with pd.unique()
+    '''
+    import_reactions = list()
+    extracellular_metabolites = list()
+    for m in model.metabolites:
+        if m.compartment == 'e':
+            extracellular_metabolites.append(m.id)
+    for e in extracellular_metabolites:
+        reactions = list(model.metabolites.get_by_id(e).reactions)
+        for r in reactions:
+            if "transport" in r.name:
+                import_reactions.append(r)
+    return import_reactions   
+
+
 
 def plot_fluxes(res, labels, colors, stack_indices, bar_width=0.1, size=(10,7), save_as=None):
     ''' 

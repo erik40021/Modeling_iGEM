@@ -6,7 +6,7 @@ from cobra.io import read_sbml_model
 from cobra.io import write_sbml_model
 
 #constants:
-OVEREXPRESSION_LOWER_BOUND = 0.2
+OVEREXPRESSION_LOWER_BOUND = 0.0
 KNOCK_DOWN_HIGHER_BOUND = 500
 APINENE_OBJECTIVE_COEFFICIENT = 0.0
 GROWTH_OBJECTIVE_COEFFICIENT = 1.0
