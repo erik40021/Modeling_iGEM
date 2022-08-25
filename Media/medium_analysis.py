@@ -1,5 +1,5 @@
 from operator import index
-from yl_cyto_old import run_medium_test          #still needs rund_medium_test eqivalents from other Yeasts
+from yl_perox_new import run_medium_test          #still needs rund_medium_test eqivalents from other Yeasts
 from media_utils import medium_objectivevalue_xlsx
 import pandas as pd
 Food=[                      #list carbon sources here   #not used atm
