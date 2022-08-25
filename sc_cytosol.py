@@ -9,6 +9,20 @@ APINENE_OBJECTIVE_COEFFICIENT = 1.0
 GROWTH_OBJECTIVE_COEFFICIENT = 1.0 - APINENE_OBJECTIVE_COEFFICIENT
 GROWTH_LOWER_BOUND = 0.0
 
+# def list_import_reactions(model):
+#      -- starts from the set of metabolites that are added to medium (=contained in exchange reactions) --
+#     import_reactions = list()
+#     extracellular_metabolites = list()
+#     for e in model.exchanges:
+#         extracellular_metabolites.append(e.reactants[0].id)
+#     for e in extracellular_metabolites:
+#         reactions = list(model.metabolites.get_by_id(e).reactions)
+#         for r in reactions:
+#             if "transport" in r.name:
+#                 import_reactions.append(r)
+#     return import_reactions   
+
+
 
 def simple_run(variant_type="GPP"):
     # builds and returns model with heterologuous reactions
