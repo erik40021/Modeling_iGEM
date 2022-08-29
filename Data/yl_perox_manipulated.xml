@@ -7851,7 +7851,6 @@
       <species id="M_fpp_x" name="farnesyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C15H25O7P2"/>
       <species id="M_npp_x" name="neryl diphosphate" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H17O7P2"/>
       <species id="M_0000_x" name="(+)-alpha-pinene[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H16"/>
-      <species id="M_newpp_x" name="geranyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H17O7P2"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter sboTerm="SBO:0000626" id="cobra_default_lb" value="-1000" constant="true"/>
@@ -28912,6 +28911,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="M_grdp_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
       <reaction id="R_MVA10" name="1.0 IPP + 1.0 DMAPP --&gt; 1.0 FPP + 1.0 Diphosphate" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
@@ -28932,6 +28932,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="M_npp_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
       <reaction id="R_MVA13" name="1.0 GPP --&gt; 1.0 Alpha-Pinene + 1.0 Diphosphate" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
@@ -28940,6 +28941,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="M_0000_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
       <reaction id="R_MVA12" name="1.0 NPP --&gt; 1.0 Alpha-Pinene + 1.0 Diphosphate" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
@@ -28948,6 +28950,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="M_0000_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
       <reaction id="R_r_apinene_con" name="1.0 Alpha-Pinene -&gt;" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
@@ -28955,10 +28958,9 @@
           <speciesReference species="M_0000_x" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
-      <reaction id="R_make_new" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub"/>
-      <reaction id="R_get_newpp" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
+      <reaction id="R_PPI_take" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
-          <speciesReference species="M_newpp_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
       <reaction id="R_get_accoa" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
@@ -28985,7 +28987,7 @@
     <fbc:listOfObjectives fbc:activeObjective="obj">
       <fbc:objective fbc:id="obj" fbc:type="maximize">
         <fbc:listOfFluxObjectives>
-          <fbc:fluxObjective fbc:reaction="R_r_apinene_con" fbc:coefficient="1"/>
+          <fbc:fluxObjective fbc:reaction="R_Biomass_Climit" fbc:coefficient="1"/>
         </fbc:listOfFluxObjectives>
       </fbc:objective>
     </fbc:listOfObjectives>

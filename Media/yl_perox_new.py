@@ -8,8 +8,8 @@ from cobra.io import write_sbml_model
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.2
 KNOCK_DOWN_HIGHER_BOUND = 500
-APINENE_OBJECTIVE_COEFFICIENT = 1.0
-GROWTH_OBJECTIVE_COEFFICIENT = 0.0
+APINENE_OBJECTIVE_COEFFICIENT = 0.0
+GROWTH_OBJECTIVE_COEFFICIENT = 1.0
 
 model = read_sbml_model("Data/yl_perox_manipulated.xml")
 

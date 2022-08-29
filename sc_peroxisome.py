@@ -31,7 +31,7 @@ def simple_run():
     IPP = Metabolite(id="s_4275", formula="C5H9O7P2", name="isopentyl diphosphate[p]", charge=-3, compartment="p")
     DMAPP = Metabolite(id="s_4276", formula="C5H9O7P2", name="dimethylallyl diphosphate[p]", charge=-3, compartment="p")
     GPP = Metabolite(id="s_4277", formula="C10H17O7P2", name="geranyl diphosphate[p]", charge=-3, compartment="p")
-    Alpha_pinene = Metabolite(id="s_4278", formula="C6H16", name="(+)-alpha-pinene[p]", charge=0, compartment="p")
+    Alpha_pinene = Metabolite(id="s_4278", formula="C10H16", name="(+)-alpha-pinene[p]", charge=0, compartment="p")
     Phosphate = Metabolite(id="s_4279", formula="HO4P", name="phosphate[p]", charge=-2, compartment="p")
     FPP = Metabolite(id="s_4280", formula="C15H25O7P2", name="farnesyl diphosphate[p]", charge=-3, compartment="p")
     NPP = Metabolite(id="s_4281",formula='C10H17O7P2', name='neryl diphosphate', charge=-3, compartment='p')

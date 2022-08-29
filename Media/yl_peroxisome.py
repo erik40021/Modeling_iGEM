@@ -29,12 +29,9 @@ Phosphate = model.metabolites.get_by_id("pi_x")
 FPP = Metabolite(id="fpp_x", formula="C15H25O7P2", name="farnesyl diphosphate[p]", charge=-3, compartment="x")
 NPP = Metabolite(id="npp_x",formula='C10H17O7P2', name='neryl diphosphate', charge=-3, compartment="x")
 CO2 = model.metabolites.get_by_id("co2_x")
-Diphosphate = model.metabolites.get_by_id("ppi_x")
-Pyrophosphate = model.metabolites.get_by_id("ppi_x")
+PPI = model.metabolites.get_by_id("ppi_x")
 
-NEWPP = Metabolite(id="newpp_x", formula="C10H17O7P2", name="geranyl diphosphate[p]", charge=-3, compartment="x")
-make_new = Reaction(id="make_new",upper_bound=1000.0)
-NEWpp_reaction = Reaction(id="get_newpp",upper_bound=1000.0)
+PPI_reaction = Reaction(id="PPI_take",upper_bound=1000.0)
 Accoa_reaction = Reaction(id="get_accoa",upper_bound=1000.0)
 Dmapp_reaction = Reaction(id="get_dmapp",upper_bound=1000.0)
 Gpp_reaction = Reaction(id="get_gpp",upper_bound=1000.0)
@@ -58,9 +55,8 @@ APS_npp_reaction = Reaction(id="MVA12", name="1.0 NPP --> 1.0 Alpha-Pinene + 1.0
 APS_gpp_reaction = Reaction(id="MVA13", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0)
 APinene_con_reaction = Reaction(id="r_apinene_con", name="1.0 Alpha-Pinene ->", upper_bound=1000.0)
 
-
-NEWpp_reaction.add_metabolites({
-    NEWPP: -1.0
+PPI_reaction.add_metabolites({
+    PPI: -1.0
 })
 Accoa_reaction.add_metabolites({
     Acetyl_CoA: -1.0
@@ -131,34 +127,34 @@ mFPS144_GPP_reaction.add_metabolites({
     IPP: -1.0,
     DMAPP: -1.0,
     GPP: 1.0,
-    #Diphosphate: 1.0
+    PPI: 1.0
 })
 
 mFPS144_FPP_reaction.add_metabolites({
     GPP: -1.0,
     IPP: -1.0,
     FPP: 1.0,
-    Diphosphate: 1.0
+    PPI: 1.0
 })
 
 APS_gpp_reaction.add_metabolites({
     GPP: -1.0,
     Alpha_pinene: 1.0,
-    #Diphosphate: 1.0
+    PPI: 1.0
 })
 
 
 APS_npp_reaction.add_metabolites({
     NPP: -1.0,
     Alpha_pinene: 1.0,
-    #Diphosphate: 1.0
+    PPI: 1.0
 })
 
 SiNPPS1_reaction.add_metabolites({
     IPP: -1.0,
     DMAPP: -1.0,
     NPP: 1.0,
-    #Diphosphate: 1.0
+    PPI: 1.0
 })
 
 APinene_con_reaction.add_metabolites({
@@ -182,8 +178,7 @@ reactionlist = [
     APS_npp_reaction,
     APinene_con_reaction,
 
-    make_new,
-    NEWpp_reaction,
+    PPI_reaction,
     Accoa_reaction,
     Dmapp_reaction,
     Gpp_reaction,
@@ -193,7 +188,7 @@ reactionlist = [
 for reaction in reactionlist:
     model.add_reaction(reaction)
 
-model.objective={model.reactions.get_by_id("Biomass_Climit"):0, model.reactions.get_by_id("r_apinene_con"):1}
+model.objective={model.reactions.get_by_id("Biomass_Climit"):1.0, model.reactions.get_by_id("r_apinene_con"):0.0}
 solution = model.optimize()
 print(solution.objective_value)
 write_sbml_model(model,"yl_perox_manipulated.xml")
