@@ -11,7 +11,7 @@ Food=[                      #list carbon sources here   #not used atm
 "EX_fru_LPAREN_e_RPAREN_",
 "EX_glyc_LPAREN_e_RPAREN_"
 ]
-Nutrients=[                 #list other nutrients here
+NUTRIENTS_YL=[                 #list other nutrients here
 "EX_h2o_LPAREN_e_RPAREN_",
 "EX_h_LPAREN_e_RPAREN_",
 "EX_k_LPAREN_e_RPAREN_",
@@ -21,14 +21,25 @@ Nutrients=[                 #list other nutrients here
 "EX_pi_LPAREN_e_RPAREN_",
 "EX_so4_LPAREN_e_RPAREN_",
 ]
+NUTRIENTS_SC=[
+'r_1654',
+'r_1832',
+'r_1861',
+'r_1992',
+'r_2005',
+'r_2020',
+'r_2049',
+'r_2060',
+'r_2100',
+'r_4593',
+'r_4594',
+'r_4595',
+'r_4596',
+'r_4597',
+'r_4600'
+]
 
-CSource=[]
-all=pd.read_excel("./Output/Media/EX_Reactions.xlsx")          #List is used as C-Source and is generated from all EX_reactions
-cnt=0
-while cnt<len(all):
-    CSource.append(all.iat[cnt,0])
-    cnt+=1
+def calculate_candidates(import_reactions, nutrients, filename):
+    Solutions=run_medium_test(import_reactions,nutrients)       #run analysis
 
-Solutions=run_medium_test(CSource,Nutrients)       #run analysis
-
-medium_objectivevalue_xlsx(CSource,Solutions)      #print to xlsx
+    medium_objectivevalue_xlsx(import_reactions,Solutions, filename)      #print to xlsx
