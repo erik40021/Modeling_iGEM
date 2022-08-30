@@ -1,6 +1,7 @@
-from Utils.yeastGEM_io import read_yeast_model, write_yeast_model
-from Utils.model_utils import plot_fluxes, summarize_properties
+from Utils.yeastGEM_io import read_yeast_model
+from Utils.model_utils import plot_fluxes
 from cobra import Model, Reaction, Metabolite
+from Media.medium_analysis import NUTRIENTS_SC, medium_objectivevalue_xlsx, run_medium_test
 
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.0
@@ -22,6 +23,14 @@ GROWTH_LOWER_BOUND = 0.0
 #                 import_reactions.append(r)
 #     return import_reactions   
 
+# run with gpp and npp pathways and name accordingly
+def run_media_analysis(filename, variant_type):
+    model = simple_run(variant_type)
+    model.objective = {model.reactions.get_by_id("r_apinene_con"): APINENE_OBJECTIVE_COEFFICIENT, 
+        model.reactions.get_by_id("r_2111"): GROWTH_OBJECTIVE_COEFFICIENT}
+    exchange_reactions = model.exchanges #list_import_reactions_SC(model)
+    solutions = run_medium_test(model, exchange_reactions, NUTRIENTS_SC) # run analysis
+    medium_objectivevalue_xlsx(solutions, filename) #store as excel file
 
 
 def simple_run(variant_type="GPP"):
@@ -150,9 +159,6 @@ def add_npp_pathway(model):
     reactions_list.append(react_npp_alphapinene)
     model.add_reactions(reactions_list)
     
-
-
-
 
 # --- simulation functions for step-by-step plotting ---
 
@@ -302,7 +308,7 @@ def solve_and_get_reaction_fluxes(model, change_biological="", change_technical=
 # ----------------- manual all-in-one built (old) -----------------------
 
 # --- step 1: load scaffold model
-model = read_yeast_model() # loads existing SBML yeastGEM model 
+# model = read_yeast_model() # loads existing SBML yeastGEM model 
 # check content of scaffold
 # summarize_properties(model)
 

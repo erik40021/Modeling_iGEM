@@ -7,11 +7,11 @@ import math
 from matplotlib import pyplot as plt
 import numpy as np
 import xlsxwriter
+import pandas as pd
 
-def list_import_reactions(model):
+def list_import_reactions_SC(model):
     '''
-    starts from the set of metabolites inside the extracellular space.
-    Caution: result contains duplicates. Filter with pd.unique()
+    starts from the set of extracellular metabolites
     '''
     import_reactions = list()
     extracellular_metabolites = list()
@@ -23,7 +23,7 @@ def list_import_reactions(model):
         for r in reactions:
             if "transport" in r.name:
                 import_reactions.append(r)
-    return import_reactions   
+    return pd.unique(import_reactions) 
 
 
 
