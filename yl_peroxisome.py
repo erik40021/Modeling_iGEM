@@ -24,10 +24,10 @@ ADP = model.metabolites.get_by_id("adp_x")
 IPP = Metabolite(id="ipdp_x", formula="C5H9O7P2", name="isopentyl diphosphate[p]", charge=-3, compartment="x")
 DMAPP = Metabolite(id="dmpp_x", formula="C5H9O7P2", name="dimethylallyl diphosphate[p]", charge=-3, compartment="x")
 GPP = Metabolite(id="grdp_x", formula="C10H17O7P2", name="geranyl diphosphate[p]", charge=-3, compartment="x")
-Alpha_pinene = Metabolite(id="0000_x", formula="C6H16", name="(+)-alpha-pinene[p]", charge=0, compartment="x")#metabolite not excisting in any other compartment
+Alpha_pinene = Metabolite(id="0000_x", formula="C10H16", name="(+)-alpha-pinene[p]", charge=0, compartment="x")#metabolite not excisting in any other compartment
 Phosphate = model.metabolites.get_by_id("pi_x")
-FPP = Metabolite(id="s_4280", formula="C15H25O7P2", name="farnesyl diphosphate[p]", charge=-3, compartment="p")
-NPP = Metabolite(id="s_4281",formula='C10H17O7P2', name='neryl diphosphate', charge=-3, compartment='p')
+FPP = Metabolite(id="s_4280", formula="C15H25O7P2", name="farnesyl diphosphate[p]", charge=-3, compartment="x")
+NPP = Metabolite(id="s_4281",formula='C10H17O7P2', name='neryl diphosphate', charge=-3, compartment='x')
 CO2 = model.metabolites.get_by_id("co2_x")
 Diphosphate = model.metabolites.get_by_id("ppi_x")
 
