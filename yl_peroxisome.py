@@ -7,13 +7,14 @@ from GSMM import GSMM
 from Media.medium_analysis import NUTRIENTS_YL, medium_objectivevalue_xlsx, run_medium_test
 
 
-class yl_perox(GSMM):
+class Yl_perox(GSMM):
     def __init__(self) -> None:
         super().__init__()
-        self.model = self.build_model()
+        self.model = None
+        self.build_model()
 
 
-    def run_medium_analysis(self, filename="yl_perox_equalmass"):
+    def run_media_analysis(self, filename="yl_perox_equalmass"):
         self.model.objective = self.model.reactions.get_by_id("r_apinene_con")
         exchange_reactions = self.model.exchanges
         solutions = run_medium_test(self.model, exchange_reactions, NUTRIENTS_YL) # run analysis
@@ -61,6 +62,7 @@ class yl_perox(GSMM):
         APS_npp_reaction = Reaction(id="MVA12", name="1.0 NPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0)
         APS_gpp_reaction = Reaction(id="MVA13", name="1.0 GPP --> 1.0 Alpha-Pinene + 1.0 Diphosphate", upper_bound=1000.0)
         APinene_con_reaction = Reaction(id="r_apinene_con", name="1.0 Alpha-Pinene ->", upper_bound=1000.0)
+        Diphosphate_con_reaction = Reaction(id="r_diphosphate_con", name="1.0 Diphosphate ->", upper_bound=1000.0, lower_bound=0) #artificial diphosphate consumption, to avoid accumulation
 
         # Add metabolites and reaction stoichiometry to reaction objects
         Erg10_reaction.add_metabolites({
@@ -114,6 +116,10 @@ class yl_perox(GSMM):
             DMAPP: 1.0
         }, reversibly=True)
 
+        Diphosphate_con_reaction.add_metabolites({
+            Diphosphate: -1.0
+        })
+
         mFPS144_GPP_reaction.add_metabolites({
             IPP: -1.0,
             DMAPP: -1.0,
@@ -166,7 +172,8 @@ class yl_perox(GSMM):
             SiNPPS1_reaction,
             APS_gpp_reaction,
             APS_npp_reaction,
-            APinene_con_reaction
+            APinene_con_reaction,
+            Diphosphate_con_reaction
         ]
         for reaction in reactionlist:
             self.model.add_reaction(reaction)

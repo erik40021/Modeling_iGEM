@@ -15,14 +15,15 @@ APINENE_OBJECTIVE_COEFFICIENT = 1.0
 GROWTH_OBJECTIVE_COEFFICIENT = 1.0 - APINENE_OBJECTIVE_COEFFICIENT
 GROWTH_LOWER_BOUND = 0.0
 
-class yl_perox(GSMM):
+class Yl_cyto(GSMM):
     def __init__(self) -> None:
         super().__init__()
-        self.model = self.build_model()
+        self.model = None
+        self.build_model()
 
 
-    def run_medium_analysis(self, filename="yl_cyto_equalmass"):
-        self.model.objective = self.model.reactions.get_by_id("r_apinene_con")
+    def run_media_analysis(self, filename="yl_cyto_equalmass"):
+        self.model.objective = self.model.reactions.get_by_id("aPinene_ex")
         exchange_reactions = self.model.exchanges
         solutions = run_medium_test(self.model, exchange_reactions, NUTRIENTS_YL) # run analysis
         medium_objectivevalue_xlsx(solutions, filename) #store as excel file

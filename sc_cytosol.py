@@ -11,11 +11,12 @@ APINENE_OBJECTIVE_COEFFICIENT = 1.0
 GROWTH_OBJECTIVE_COEFFICIENT = 1.0 - APINENE_OBJECTIVE_COEFFICIENT
 GROWTH_LOWER_BOUND = 0.0
 
-class sc_cyto(GSMM):
+class Sc_cyto(GSMM):
     def __init__(self, variant_type="GPP") -> None:
         super().__init__()
         self.variant_type = variant_type
-        self.model = self.build_model(variant_type)
+        self.model = None
+        self.build_model()
 
 
     def build_model(self):

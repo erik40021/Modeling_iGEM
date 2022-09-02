@@ -47,10 +47,9 @@ def run_medium_test(model, exchange_reactions, nutrients):
             medium[i.id]=0
         for n in nutrients:                     #add nutrients
             medium[n] = 10000
-        medium[r.id] = calculate_amount_per_mass(r)                           #add only one carbon source
+        medium[r.id], formula = calculate_amount_per_mass(r)                           #add only one carbon source
         model.medium = medium
-
-        solution = r.id, model.slim_optimize(), r.name, r.reactants[0].formula
+        solution = r.id, model.slim_optimize(), r.name, formula
         if solution[1] > 0:
             solutions.append(solution)          #save objective value
         
@@ -75,7 +74,7 @@ def calculate_amount_per_mass(reaction):
     try:
         divstr = formula.split("C")
         if len(divstr) == 1: # filter out formulas without carbon
-            return 0
+            return 0, formula
         i = 0
         while(i < len(elem_counts)):
             divstr = divstr[1].split(elements[i])
@@ -115,14 +114,15 @@ def calculate_amount_per_mass(reaction):
         print(e)
         print("occured for ", formula)
     except:
-        print("occured for ", formula)
-    print("carbon", elem_counts[0], "hydrogen", elem_counts[1], "nitrogen", elem_counts[2],
-    "oxygen", elem_counts[3], "phosphor", elem_counts[4], "sulphur", elem_counts[5])
+        print("Error occured for ", formula)
+    print("Result for ", formula, ":  C:", elem_counts[0], "H:", elem_counts[1], "N:", elem_counts[2],
+    "O:", elem_counts[3], "P:", elem_counts[4], "S:", elem_counts[5])
     print("mass of molecule:", (16*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
         + 16*elem_counts[3] + 31*elem_counts[4] + 32*elem_counts[5]))
-    amount = 10000 / (16*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
+
+    amount = 5000 / (12*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
         + 16*elem_counts[3] + 31*elem_counts[4] + 32*elem_counts[5])
-    return amount
+    return amount, formula
 
 #calculate_amount_per_mass("C10H15N2O3S")
 

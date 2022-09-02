@@ -13,10 +13,11 @@ KNOCK_DOWN_HIGHER_BOUND = 500
 APINENE_OBJECTIVE_COEFFICIENT = 1.0
 GROWTH_OBJECTIVE_COEFFICIENT = 1 - APINENE_OBJECTIVE_COEFFICIENT
 
-class sc_perox(GSMM):
+class Sc_perox(GSMM):
     def __init__(self) -> None:
         super().__init__()
-        self.model = self.build_model()
+        self.model = None
+        self.build_model()
 
 
     def run_media_analysis(self, filename="sc_perox_equalmass"):

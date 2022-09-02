@@ -3,7 +3,7 @@ from abc import abstractclassmethod
 
 class GSMM:
     '''
-    Genome-scale metabolic model super class
+    Genome-scale metabolic model abstract super class
     '''
     def __init__(self) -> None:
         pass
@@ -13,5 +13,5 @@ class GSMM:
         pass
 
     @abstractclassmethod   
-    def run_medium_analysis(self):
+    def run_media_analysis(self):
         pass
