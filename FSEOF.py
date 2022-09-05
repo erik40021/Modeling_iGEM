@@ -76,7 +76,6 @@ class FSEOF():
         
         #calculate slopes of linear regressions for fluxes and flux capactiy
         fluxes["q_slope"] = fluxes.apply(lambda y: getSlopes(y), axis=1)
-        
         fluxCapacity["l_sol"] = fluxCapacity.apply(lambda y: getSlopes(y), axis=1)
         
         targets = pd.concat([fluxes["q_slope"], fluxCapacity["l_sol"]], axis=1)
