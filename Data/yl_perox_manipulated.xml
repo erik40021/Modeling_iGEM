@@ -42,21 +42,21 @@
           </html>
         </notes>
       </species>
-      <species id="M_13BDglcn_e" name="1_3_beta_D_Glucan" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_13BDglcn_e" name="1_3_beta_D_Glucan" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C18H32O16">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_h2o_e" name="H2O" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_h2o_e" name="H2O" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="H2O">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_glc_D_e" name="D_Glucose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_glc_D_e" name="D_Glucose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H12O6">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -455,14 +455,14 @@
           </html>
         </notes>
       </species>
-      <species id="M_5aop_e" name="5_Amino_4_oxopentanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_5aop_e" name="5_Amino_4_oxopentanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H8NO3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_h_e" name="H" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_h_e" name="H" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="H">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
@@ -511,7 +511,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_8aonn_e" name="8_Amino_7_oxononanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_8aonn_e" name="8_Amino_7_oxononanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H16NO3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -602,7 +602,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_abt_e" name="L_Arabinitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_abt_e" name="L_Arabinitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H12O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -637,7 +637,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_4abut_e" name="4_Aminobutanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_4abut_e" name="4_Aminobutanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H9NO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -1050,21 +1050,21 @@
           </html>
         </notes>
       </species>
-      <species id="M_fmn_e" name="FMN" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_fmn_e" name="FMN" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C17H21N4O9P">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_pi_e" name="Phosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_pi_e" name="Phosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="O4P">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_ribflv_e" name="Riboflavin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ribflv_e" name="Riboflavin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C17H20N4O6 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -1148,7 +1148,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_ac_e" name="Acetate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ac_e" name="Acetate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C2H3O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
@@ -1176,7 +1176,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_ade_e" name="Adenine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ade_e" name="Adenine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H5N5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -1302,7 +1302,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_adn_e" name="Adenosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_adn_e" name="Adenosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C10H13N5O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -1526,7 +1526,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_akg_e" name="2_Oxoglutarate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_akg_e" name="2_Oxoglutarate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H6O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
@@ -1540,7 +1540,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_mal_L_e" name="L_Malate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_mal_L_e" name="L_Malate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H4O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
@@ -1610,7 +1610,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_ala_L_e" name="L_Alanine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ala_L_e" name="L_Alanine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C3H7NO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -1729,14 +1729,14 @@
           </html>
         </notes>
       </species>
-      <species id="M_alltn_e" name="Allantoin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_alltn_e" name="Allantoin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H6N4O3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_alltt_e" name="Allantoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_alltt_e" name="Allantoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H7N4O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
@@ -1785,7 +1785,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_amet_e" name="S_Adenosyl_L_methionine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_amet_e" name="S_Adenosyl_L_methionine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C15H23N6O5S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
@@ -1918,14 +1918,14 @@
           </html>
         </notes>
       </species>
-      <species id="M_arab_D_e" name="D_Arabinose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_arab_D_e" name="D_Arabinose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_arab_L_e" name="L_Arabinose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_arab_L_e" name="L_Arabinose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -2184,7 +2184,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_arg_L_e" name="L_Arginine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_arg_L_e" name="L_Arginine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H14N4O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
@@ -2240,7 +2240,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_asn_L_e" name="L_Asparagine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_asn_L_e" name="L_Asparagine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H8N2O3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -2317,7 +2317,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_asp_L_e" name="L_Aspartate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_asp_L_e" name="L_Aspartate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H7NO4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
@@ -2478,7 +2478,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_btn_e" name="Biotin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_btn_e" name="Biotin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H16N2O3S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
@@ -2828,7 +2828,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_chol_e" name="Choline" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_chol_e" name="Choline" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H14NO">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
@@ -2856,7 +2856,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_cit_e" name="Citrate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_cit_e" name="Citrate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H5O7">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -3</p>
@@ -2996,7 +2996,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_crn_e" name="L_Carnitine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_crn_e" name="L_Carnitine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C7H15NO3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3010,7 +3010,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_csn_e" name="Cytosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_csn_e" name="Cytosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H5N3O">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3094,7 +3094,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_cys_L_e" name="L_Cysteine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_cys_L_e" name="L_Cysteine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C3H7NO2S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3115,7 +3115,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_cytd_e" name="Cytidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_cytd_e" name="Cytidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H13N3O5 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3136,7 +3136,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_dad_2_e" name="Deoxyadenosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_dad_2_e" name="Deoxyadenosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H13N5O3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3178,7 +3178,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_dann_e" name="7_8_Diaminononanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_dann_e" name="7_8_Diaminononanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C9H19N2O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
@@ -3255,7 +3255,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_dcyt_e" name="Deoxycytidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_dcyt_e" name="Deoxycytidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H13N3O4 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3311,7 +3311,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_dgsn_e" name="Deoxyguanosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_dgsn_e" name="Deoxyguanosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H13N5O4 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3493,7 +3493,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_din_e" name="Deoxyinosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_din_e" name="Deoxyinosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H12N4O4 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3570,7 +3570,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_ddca_e" name="Dodecanoate__n_C120_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ddca_e" name="Dodecanoate__n_C120_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H23O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
@@ -3675,7 +3675,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_dttp_e" name="dTTP" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_dttp_e" name="dTTP" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C10H17N2O14P3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -4</p>
@@ -3703,7 +3703,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_duri_e" name="Deoxyuridine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_duri_e" name="Deoxyuridine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H12N2O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3850,7 +3850,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_ergst_e" name="Ergosterol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ergst_e" name="Ergosterol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C28H44O ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -3878,525 +3878,525 @@
           </html>
         </notes>
       </species>
-      <species id="M_etoh_e" name="Ethanol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_etoh_e" name="Ethanol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C2H6O">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_buca_e" name="butanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_buca_e" name="butanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H7O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_co2_e" name="CO2" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_co2_e" name="CO2" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="CO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_for_e" name="Formate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_for_e" name="Formate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="CHO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_fru_e" name="D_Fructose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_fru_e" name="D_Fructose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H12O6">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_fum_e" name="Fumarate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_fum_e" name="Fumarate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C4H2O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_gal_e" name="D_Galactose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gal_e" name="D_Galactose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H12O6 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_gam6p_e" name="D_Glucosamine_6_phosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gam6p_e" name="D_Glucosamine_6_phosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H14NO8P">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_gcald_e" name="Glycolaldehyde" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gcald_e" name="Glycolaldehyde" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C2H4O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_gln_L_e" name="L_Glutamine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gln_L_e" name="L_Glutamine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10N2O3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_glu_L_e" name="L_Glutamate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_glu_L_e" name="L_Glutamate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10NO4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_gly_e" name="Glycine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gly_e" name="Glycine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C2H5NO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_glyc_e" name="Glycerol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_glyc_e" name="Glycerol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C3H8O3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_gsn_e" name="Guanosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gsn_e" name="Guanosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H13N5O5 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_gthox_e" name="Oxidized_glutathione" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gthox_e" name="Oxidized_glutathione" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C20H32N6O12S2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_gua_e" name="Guanine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_gua_e" name="Guanine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C5H5N5O ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_hdca_e" name="Hexadecanoate__n_C160_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_hdca_e" name="Hexadecanoate__n_C160_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C16H31O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_hca_e" name="hexanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_hca_e" name="hexanoate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C16H31O3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -4</p>
           </html>
         </notes>
       </species>
-      <species id="M_hdcea_e" name="Hexadecenoate__n_C161_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_hdcea_e" name="Hexadecenoate__n_C161_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C16H31O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_his_L_e" name="L_Histidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_his_L_e" name="L_Histidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C6H9N3O2 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_hxan_e" name="Hypoxanthine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_hxan_e" name="Hypoxanthine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H4N4O">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ile_L_e" name="L_Isoleucine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ile_L_e" name="L_Isoleucine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H13NO2 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_inost_e" name="myo_Inositol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_inost_e" name="myo_Inositol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H15O15P3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ins_e" name="Inosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ins_e" name="Inosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H12N4O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_k_e" name="potassium" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_k_e" name="potassium" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="K">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_lac_L_e" name="L_Lactate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_lac_L_e" name="L_Lactate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C3H5O3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_leu_L_e" name="L_Leucine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_leu_L_e" name="L_Leucine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H13NO2 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_lys_L_e" name="L_Lysine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_lys_L_e" name="L_Lysine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H14N2O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_malt_e" name="Maltose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_malt_e" name="Maltose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H22O11 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_man_e" name="D_Mannose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_man_e" name="D_Mannose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H12O6 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_melib_e" name="Melibiose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_melib_e" name="Melibiose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C12H22O11 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_met_L_e" name="L_Methionine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_met_L_e" name="L_Methionine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H11NO2S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_mmet_e" name="S_Methyl_L_methionine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_mmet_e" name="S_Methyl_L_methionine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H14NO2S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_na1_e" name="Sodium" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_na1_e" name="Sodium" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="Na">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_nh4_e" name="Ammonium" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_nh4_e" name="Ammonium" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" H3N ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_nmn_e" name="NMN" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_nmn_e" name="NMN" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C11H15N2O8P">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_o2_e" name="O2" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_o2_e" name="O2" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ocdca_e" name="octadecanoate__n_C180_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ocdca_e" name="octadecanoate__n_C180_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C18H35O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_ocdcea_e" name="octadecenoate__n_C181_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ocdcea_e" name="octadecenoate__n_C181_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C18H35O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_ocdcya_e" name="octadecadienoate__n_C182_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ocdcya_e" name="octadecadienoate__n_C182_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C18H35O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_orn_e" name="Ornithine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_orn_e" name="Ornithine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C5H12N2O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_pap_e" name="Adenosine_3__5__bisphosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_pap_e" name="Adenosine_3__5__bisphosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H15N5O10P2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -4</p>
           </html>
         </notes>
       </species>
-      <species id="M_phe_L_e" name="L_Phenylalanine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_phe_L_e" name="L_Phenylalanine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H11NO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_pnto_R_e" name="R__Pantothenate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_pnto_R_e" name="R__Pantothenate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H17NO5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -10</p>
           </html>
         </notes>
       </species>
-      <species id="M_pro_L_e" name="L_Proline" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_pro_L_e" name="L_Proline" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H9NO2 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ptrc_e" name="Putrescine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ptrc_e" name="Putrescine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H12N2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 2</p>
           </html>
         </notes>
       </species>
-      <species id="M_pyr_e" name="Pyruvate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_pyr_e" name="Pyruvate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C3H3O3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_rib_D_e" name="D_Ribose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_rib_D_e" name="D_Ribose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_sbt_D_e" name="D_Sorbitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_sbt_D_e" name="D_Sorbitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H14O6">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_sbt_L_e" name="L_Sorbitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_sbt_L_e" name="L_Sorbitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H14O6 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ser_L_e" name="L_Serine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ser_L_e" name="L_Serine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C3H7NO3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_so4_e" name="Sulfate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_so4_e" name="Sulfate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="O4S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_spmd_e" name="Spermidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_spmd_e" name="Spermidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C7H19N3 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 3</p>
           </html>
         </notes>
       </species>
-      <species id="M_sprm_e" name="Spermine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_sprm_e" name="Spermine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula=" C10H26N4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 4</p>
           </html>
         </notes>
       </species>
-      <species id="M_srb_L_e" name="L_Sorbose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_srb_L_e" name="L_Sorbose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H12O6  ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_succ_e" name="Succinate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_succ_e" name="Succinate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H4O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_thm_e" name="Thiamin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_thm_e" name="Thiamin" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H17N4OS">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 1</p>
           </html>
         </notes>
       </species>
-      <species id="M_thmmp_e" name="Thiamin_monophosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_thmmp_e" name="Thiamin_monophosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H18N4O4PS">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_thmpp_e" name="Thiamine_diphosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_thmpp_e" name="Thiamine_diphosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H19N4O7P2S">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_thr_L_e" name="L_Threonine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_thr_L_e" name="L_Threonine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H9NO3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_thym_e" name="Thymine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_thym_e" name="Thymine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H6N2O2 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_thymd_e" name="Thymidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_thymd_e" name="Thymidine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H14N2O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_tre_e" name="Trehalose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_tre_e" name="Trehalose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H22O11">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_trp_L_e" name="L_Tryptophan" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_trp_L_e" name="L_Tryptophan" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C11H12N2O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ttdca_e" name="tetradecanoate__n_C140_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ttdca_e" name="tetradecanoate__n_C140_" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C14H27O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -1</p>
           </html>
         </notes>
       </species>
-      <species id="M_tyr_L_e" name="L_Tyrosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_tyr_L_e" name="L_Tyrosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H11NO3">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_ura_e" name="Uracil" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_ura_e" name="Uracil" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C4H4N2O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_urea_e" name="Urea" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_urea_e" name="Urea" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="CH4N2O">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_uri_e" name="Uridine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_uri_e" name="Uridine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C9H12N2O6">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_val_L_e" name="L_Valine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_val_L_e" name="L_Valine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H11NO2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_xan_e" name="Xanthine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_xan_e" name="Xanthine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H4N4O2">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_xtsn_e" name="Xanthosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_xtsn_e" name="Xanthosine" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H12N4O6 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_xyl_D_e" name="D_Xylose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_xyl_D_e" name="D_Xylose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10O5">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_xylt_e" name="Xylitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_xylt_e" name="Xylitol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H12O5 ">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_zymst_e" name="zymosterol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_zymst_e" name="zymosterol" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C27H44O">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -7371,7 +7371,7 @@
           </html>
         </notes>
       </species>
-      <species id="M_tre_c_e" name="tre_c(e)" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_tre_c_e" name="tre_c(e)" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H22O11">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: NaN</p>
@@ -7756,42 +7756,42 @@
           </html>
         </notes>
       </species>
-      <species id="M_C10DC_e" name="Decanedioate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_C10DC_e" name="Decanedioate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H16O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_C12DC_e" name="Dodecanedioate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_C12DC_e" name="Dodecanedioate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H20O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_C16DC_e" name="DHexadecanedioate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_C16DC_e" name="DHexadecanedioate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C16H28O4">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: -2</p>
           </html>
         </notes>
       </species>
-      <species id="M_decane_e" name="Decane" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_decane_e" name="Decane" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H22">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_dodec_e" name="Dodecane" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_dodec_e" name="Dodecane" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H26">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
           </html>
         </notes>
       </species>
-      <species id="M_hedecane_e" name="Hexadecane" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0">
+      <species id="M_hedecane_e" name="Hexadecane" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C16H34">
         <notes>
           <html xmlns="http://www.w3.org/1999/xhtml">
             <p>fbc: charge: 0</p>
@@ -7848,8 +7848,8 @@
       <species id="M_ipdp_x" name="isopentyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C5H9O7P2"/>
       <species id="M_dmpp_x" name="dimethylallyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C5H9O7P2"/>
       <species id="M_grdp_x" name="geranyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H17O7P2"/>
-      <species id="M_fpp_x" name="farnesyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C15H25O7P2"/>
-      <species id="M_npp_x" name="neryl diphosphate" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H17O7P2"/>
+      <species id="M_s_4280" name="farnesyl diphosphate[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C15H25O7P2"/>
+      <species id="M_s_4281" name="neryl diphosphate" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H17O7P2"/>
       <species id="M_0000_x" name="(+)-alpha-pinene[p]" compartment="x" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C10H16"/>
     </listOfSpecies>
     <listOfParameters>
@@ -28920,7 +28920,7 @@
           <speciesReference species="M_ipdp_x" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="M_fpp_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_s_4280" stoichiometry="1" constant="true"/>
           <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
@@ -28931,7 +28931,7 @@
           <speciesReference species="M_dmpp_x" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="M_npp_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_s_4281" stoichiometry="1" constant="true"/>
           <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
@@ -28946,7 +28946,7 @@
       </reaction>
       <reaction id="R_MVA12" name="1.0 NPP --&gt; 1.0 Alpha-Pinene + 1.0 Diphosphate" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
-          <speciesReference species="M_npp_x" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_s_4281" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="M_0000_x" stoichiometry="1" constant="true"/>
@@ -28958,29 +28958,9 @@
           <speciesReference species="M_0000_x" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
-      <reaction id="R_PPI_take" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
+      <reaction id="R_r_diphosphate_con" name="1.0 Diphosphate -&gt;" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_ppi_x" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-      </reaction>
-      <reaction id="R_get_accoa" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_accoa_x" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-      </reaction>
-      <reaction id="R_get_dmapp" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_dmpp_x" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-      </reaction>
-      <reaction id="R_get_gpp" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_grdp_x" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-      </reaction>
-      <reaction id="R_get_ipp" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_ipdp_x" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
     </listOfReactions>
