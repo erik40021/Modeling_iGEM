@@ -1,0 +1,7 @@
+
++ einmal analysis_run mit growth flux > 0 probieren
+siehe:
+growthConstraint = self.model.problem.Constraint(
+            self.model.reactions.get_by_id(self.biomassID).flux_expression, lb = maxFluxCutoff * self.optimalGrowth
+        )
+        self.model.add_cons_vars(growthConstraint)

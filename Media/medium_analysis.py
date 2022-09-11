@@ -47,19 +47,27 @@ def run_medium_test(model, exchange_reactions, nutrients):
             medium[i.id]=0
         for n in nutrients:                     #add nutrients
             medium[n] = 10000
-        medium[r.id], formula = calculate_amount_per_mass(r)                           #add only one carbon source
-        model.medium = medium
-        solution = r.id, model.slim_optimize(), r.name, formula
-        if solution[1] > 0:
-            solutions.append(solution)          #save objective value
         
-    solutions.sort(reverse = True, key = lambda l: l[1])
+        equal_weight, formula, equal_carbon = calculate_amount_per_mass(r)                           #add only one carbon source
+        medium[r.id] = equal_weight
+        model.medium = medium
+        solution_equal_mass = model.slim_optimize()
+        medium[r.id] = equal_carbon
+        model.medium = medium
+        solution_equal_carbon_number = model.slim_optimize()
+        if solution_equal_mass is None or not solution_equal_mass > 0:
+            continue
+        solution = (r.id, r.name, solution_equal_mass, equal_weight, solution_equal_carbon_number, equal_carbon, solution_equal_carbon_number/60, formula)
+        solutions.append(solution)          #save objective value
+        
+    solutions.sort(reverse = True, key = lambda l: l[2])
+    solutions.insert(0, ["id", "reaction name", "apinene flux [equal mass]", "mmol used", "apinene flux [equal carbon]",
+        "mmol used", "carbon efficiency", "metabolite formula"])
     return solutions
     
 
 def calculate_amount_per_mass(reaction):
     '''
-    calculates amount of molecule needed to reach 10 mg.
     note: formula of metabolite is expected to have HiII-system compliant element order, e.g.: C -> H -> N -> O -> P -> S
     '''
     try:
@@ -74,7 +82,7 @@ def calculate_amount_per_mass(reaction):
     try:
         divstr = formula.split("C")
         if len(divstr) == 1: # filter out formulas without carbon
-            return 0, formula
+            return 0, formula, 0
         i = 0
         while(i < len(elem_counts)):
             divstr = divstr[1].split(elements[i])
@@ -115,28 +123,25 @@ def calculate_amount_per_mass(reaction):
         print("occured for ", formula)
     except:
         print("Error occured for ", formula)
-    print("Result for ", formula, ":  C:", elem_counts[0], "H:", elem_counts[1], "N:", elem_counts[2],
-    "O:", elem_counts[3], "P:", elem_counts[4], "S:", elem_counts[5])
-    print("mass of molecule:", (16*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
-        + 16*elem_counts[3] + 31*elem_counts[4] + 32*elem_counts[5]))
+    # print("Result for ", formula, ":  C:", elem_counts[0], "H:", elem_counts[1], "N:", elem_counts[2],
+    # "O:", elem_counts[3], "P:", elem_counts[4], "S:", elem_counts[5])
+    # print("mass of molecule:", (16*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
+    #     + 16*elem_counts[3] + 31*elem_counts[4] + 32*elem_counts[5]))
 
-    amount = 5000 / (12*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
+    amount = 1800 / (12*elem_counts[0] + 1*elem_counts[1] + 14*elem_counts[2] 
         + 16*elem_counts[3] + 31*elem_counts[4] + 32*elem_counts[5])
-    return amount, formula
+    carbon = 60 / elem_counts[0]    # means: we test with 60 mmol of carbon atoms per gdcw/h (= 60*6*10^20 = 3.6*10^22 carbon atoms)
+    return amount, formula, carbon
 
 #calculate_amount_per_mass("C10H15N2O3S")
 
 def medium_objectivevalue_xlsx(solutions, name):
     workbook = xlsxwriter.Workbook('Output/Media/' + name + '.xlsx')      #create .xlsx
     worksheet = workbook.add_worksheet()
-    worksheet.write(0,0,"Carbon source reaction")         #head of table
-    worksheet.write(0,1,"Objective value")
-    worksheet.write(0,2,"Reaction name")
-    worksheet.write(0,3,"Metabolite formula")
-    for s in range(0, len(solutions)):
-        worksheet.write(s+1, 0, solutions[s][0])             # write id of C-Source in first column
-        worksheet.write(s+1, 1, solutions[s][1])             # objective value for this c-source
-        worksheet.write(s+1, 2, solutions[s][2])             # name 
-        worksheet.write(s+1, 3, solutions[s][3])             # formula
+    # for i in range(0, len(solutions[0])):
+    #     worksheet.write(0,i,solutions[0][i])         #head of table
+    for i in range(0, len(solutions)):
+        for j in range(0, len(solutions[i])):
+            worksheet.write(i, j, solutions[i][j])
     workbook.close()
     print(name + '.xlsx was written')
