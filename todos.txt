@@ -1,4 +1,6 @@
 
+- 
+
 + einmal analysis_run mit growth flux > 0 probieren
 siehe:
 growthConstraint = self.model.problem.Constraint(

@@ -1,5 +1,5 @@
 from GSMM import GSMM
-from Media.medium_analysis import NUTRIENTS_SC, medium_objectivevalue_xlsx, run_medium_test
+from Media.medium_analysis import media_results_to_excel, run_medium_test
 from Utils.yeastGEM_io import read_yeast_model, write_yeast_model
 from Utils.model_utils import plot_fluxes, summarize_properties
 from cobra import Model, Reaction, Metabolite
@@ -20,12 +20,12 @@ class Sc_perox(GSMM):
         self.build_model()
 
 
-    def run_media_analysis(self, filename="sc_perox_equalmass"):
+    def run_media_analysis(self, compare_factor):
         self.model.objective = {self.model.reactions.get_by_id("r_apinene_con"): APINENE_OBJECTIVE_COEFFICIENT, 
             self.model.reactions.get_by_id("r_2111"): GROWTH_OBJECTIVE_COEFFICIENT}
         exchange_reactions = self.model.exchanges #list_import_reactions_SC(model)
-        solutions = run_medium_test(self.model, exchange_reactions, NUTRIENTS_SC) # run analysis
-        medium_objectivevalue_xlsx(solutions, filename) #store as excel file
+        s1, s2 = run_medium_test(self.model, exchange_reactions, "sc", compare_factor) # run analysis
+        return s1, s2
 
     def build_model(self):
         self.model = read_yeast_model()
