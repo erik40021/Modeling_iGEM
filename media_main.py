@@ -1,5 +1,6 @@
 
 
+from Media.medium_analysis import media_results_to_excel, plot_oxygen_curves
 from sc_cytosol import Sc_cyto
 from sc_peroxisome import Sc_perox
 from yl_cytosol import Yl_cyto
@@ -13,11 +14,49 @@ def run_all_analyses():
     sc_perox = Sc_perox()
     yl_cyto = Yl_cyto()
     yl_perox = Yl_perox()
-    #run analyses
-    sc_cyto_gpp.run_media_analysis("sc_cyto_gpp_equalmass")
-    sc_cyto_npp.run_media_analysis("sc_cyto_npp_equalmass")
-    sc_perox.run_media_analysis("sc_perox_equalmass")
-    yl_cyto.run_media_analysis("yl_cyto_equalmass")
-    yl_perox.run_media_analysis("yl_perox_equalmass")
-    
-run_all_analyses()
+
+    # run analyses with equal mass
+    s1, s2 = sc_cyto_gpp.run_media_analysis("mass")
+    # media_results_to_excel(s1, "Csource/sc_cyto_gpp_csource")
+    media_results_to_excel(s2, "Oxygen/sc_cyto_gpp_oxygen_equalmass")
+    s1, s2 = sc_cyto_npp.run_media_analysis("mass")
+    # media_results_to_excel(s1, "Csource/sc_cyto_npp_csource")
+    media_results_to_excel(s2, "Oxygen/sc_cyto_npp_oxygen_equalmass")
+    s1, s2 = sc_perox.run_media_analysis("mass")
+    # media_results_to_excel(s1, "Csource/sc_perox_csource")
+    media_results_to_excel(s2, "Oxygen/sc_perox_oxygen_equalmass")
+    s1, s2 = yl_cyto.run_media_analysis("mass")
+    # media_results_to_excel(s1, "Csource/yl_cyto_csource")
+    media_results_to_excel(s2, "Oxygen/yl_cyto_oxygen_equalmass")
+    s1, s2 = yl_perox.run_media_analysis("mass")
+    # media_results_to_excel(s1, "Csource/yl_perox_csource")
+    media_results_to_excel(s2, "Oxygen/yl_perox_oxygen_equalmass") 
+
+    # and (for oxygen) also with equal carbon
+    s1, s2 = sc_cyto_gpp.run_media_analysis("carbon")
+    media_results_to_excel(s2, "Oxygen/sc_cyto_gpp_oxygen_equalcarbon")
+    s1, s2 = sc_cyto_npp.run_media_analysis("carbon")
+    media_results_to_excel(s2, "Oxygen/sc_cyto_npp_oxygen_equalcarbon")
+    s1, s2 = sc_perox.run_media_analysis("carbon")
+    media_results_to_excel(s2, "Oxygen/sc_perox_oxygen_equalcarbon")
+    s1, s2 = yl_cyto.run_media_analysis("carbon")
+    media_results_to_excel(s2, "Oxygen/yl_cyto_oxygen_equalcarbon")
+    s1, s2 = yl_perox.run_media_analysis("carbon")
+    media_results_to_excel(s2, "Oxygen/yl_perox_oxygen_equalcarbon")
+
+
+def plot_oxygen_results():
+    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalmass")
+    plot_oxygen_curves("sc_cyto_npp_oxygen_equalmass")   
+    plot_oxygen_curves("sc_perox_oxygen_equalmass")
+    plot_oxygen_curves("yl_cyto_oxygen_equalmass")
+    plot_oxygen_curves("yl_perox_oxygen_equalmass")
+
+    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalcarbon")
+    plot_oxygen_curves("sc_cyto_npp_oxygen_equalcarbon")   
+    plot_oxygen_curves("sc_perox_oxygen_equalcarbon")
+    plot_oxygen_curves("yl_cyto_oxygen_equalcarbon")
+    plot_oxygen_curves("yl_perox_oxygen_equalcarbon")
+
+#run_all_analyses()
+plot_oxygen_results()

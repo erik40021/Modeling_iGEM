@@ -2,7 +2,7 @@ from GSMM import GSMM
 from Utils.yeastGEM_io import read_yeast_model
 from Utils.model_utils import plot_fluxes
 from cobra import Model, Reaction, Metabolite
-from Media.medium_analysis import NUTRIENTS_SC, medium_objectivevalue_xlsx, run_medium_test
+from Media.medium_analysis import media_results_to_excel, run_medium_test
 
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.0
@@ -29,12 +29,13 @@ class Sc_cyto(GSMM):
             self.add_npp_pathway()
 
     # run with gpp and npp pathways and name accordingly
-    def run_media_analysis(self, filename="sc_cyto_gpp_equalmass"):
+    def run_media_analysis(self, compare_factor):
         self.model.objective = {self.model.reactions.get_by_id("r_apinene_con"): APINENE_OBJECTIVE_COEFFICIENT, 
             self.model.reactions.get_by_id("r_2111"): GROWTH_OBJECTIVE_COEFFICIENT}
         exchange_reactions = self.model.exchanges #list_import_reactions_SC(model)
-        solutions = run_medium_test(self.model, exchange_reactions, NUTRIENTS_SC) # run analysis
-        medium_objectivevalue_xlsx(solutions, filename) #store as excel file
+        s1, s2 = run_medium_test(self.model, exchange_reactions, "sc", compare_factor) # run analysis
+        return s1, s2
+        
 
     # to save (gpp) model use e.g.:
     # "write_yeast_model(gpp_model, os.path.join(os.getcwd(),"Data/sc_cyto_gpp_manipulated.xml"))"

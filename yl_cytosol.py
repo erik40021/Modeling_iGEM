@@ -6,7 +6,7 @@ from cobra.io import read_sbml_model
 from cobra.io import write_sbml_model
 
 from GSMM import GSMM
-from Media.medium_analysis import NUTRIENTS_YL, medium_objectivevalue_xlsx, run_medium_test
+from Media.medium_analysis import media_results_to_excel, run_medium_test
 
 #constants:
 OVEREXPRESSION_LOWER_BOUND = 0.0
@@ -22,11 +22,11 @@ class Yl_cyto(GSMM):
         self.build_model()
 
 
-    def run_media_analysis(self, filename="yl_cyto_equalmass"):
+    def run_media_analysis(self, compare_factor):
         self.model.objective = self.model.reactions.get_by_id("aPinene_ex")
         exchange_reactions = self.model.exchanges
-        solutions = run_medium_test(self.model, exchange_reactions, NUTRIENTS_YL) # run analysis
-        medium_objectivevalue_xlsx(solutions, filename) #store as excel file
+        s1, s2 = run_medium_test(self.model, exchange_reactions, "yl", compare_factor) # run analysis
+        return s1, s2
 
     def build_model(self):
         self.model = read_sbml_model("Data/iYLI647.xml")
