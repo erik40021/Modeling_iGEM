@@ -45,18 +45,18 @@ def run_all_analyses():
     media_results_to_excel(s2, "Oxygen/yl_perox_oxygen_equalcarbon")
 
 
-def plot_oxygen_results():
-    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalmass")
-    plot_oxygen_curves("sc_cyto_npp_oxygen_equalmass")   
-    plot_oxygen_curves("sc_perox_oxygen_equalmass")
-    plot_oxygen_curves("yl_cyto_oxygen_equalmass")
-    plot_oxygen_curves("yl_perox_oxygen_equalmass")
+def plot_oxygen_results(verbose):
+    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalmass", verbose)
+    plot_oxygen_curves("sc_cyto_npp_oxygen_equalmass", verbose)   
+    plot_oxygen_curves("sc_perox_oxygen_equalmass", verbose)
+    plot_oxygen_curves("yl_cyto_oxygen_equalmass", verbose)
+    plot_oxygen_curves("yl_perox_oxygen_equalmass", verbose)
 
-    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalcarbon")
-    plot_oxygen_curves("sc_cyto_npp_oxygen_equalcarbon")   
-    plot_oxygen_curves("sc_perox_oxygen_equalcarbon")
-    plot_oxygen_curves("yl_cyto_oxygen_equalcarbon")
-    plot_oxygen_curves("yl_perox_oxygen_equalcarbon")
+    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalcarbon", verbose)
+    plot_oxygen_curves("sc_cyto_npp_oxygen_equalcarbon", verbose)   
+    plot_oxygen_curves("sc_perox_oxygen_equalcarbon", verbose)
+    plot_oxygen_curves("yl_cyto_oxygen_equalcarbon", verbose)
+    plot_oxygen_curves("yl_perox_oxygen_equalcarbon", verbose)
 
 #run_all_analyses()
-plot_oxygen_results()
+plot_oxygen_results(True)

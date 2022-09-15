@@ -174,14 +174,15 @@ def calculate_amount_per_mass(reaction):
     return amount, formula, carbon
 
 
-def plot_oxygen_curves(filename):
+def plot_oxygen_curves(filename, verbose=False):
+    # TODO: adapt to plot-stylsheet conventions (colors!)
     df = pd.read_excel('Output/Media/Oxygen/' + filename + '.xlsx', index_col=0)
     
     metabolites = list(df.index)
     oxygenUptake = list(df.columns)
 
     #create figure
-    fig = plt.figure(figsize=(9,12))
+    fig = plt.figure(figsize=(14,10))
     ax = fig.add_subplot()
 
     for metabolite in metabolites:
@@ -191,7 +192,8 @@ def plot_oxygen_curves(filename):
     ax.set_ylabel("Alpha-pinene Flux [mmol/gdcw/h]")
     ax.legend()
     plt.savefig('Output/Media/Oxygen/' + filename + '.png')
-    plt.show()
+    if not verbose:
+        plt.show()
 
 
 
