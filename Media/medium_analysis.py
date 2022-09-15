@@ -6,16 +6,6 @@ import pandas as pd
 import xlsxwriter
 from matplotlib import pyplot as plt
 
-# Food_YL=[                      #list carbon sources here   #not used atm
-# "EX_Fat_LPAREN_e_RPAREN_",
-# "EX_glc_LPAREN_e_RPAREN_",
-# "EX_inost_LPAREN_e_RPAREN_",
-# "EX_tre_LPAREN_e_RPAREN_",
-# "EX_xyl_D_LPAREN_e_RPAREN_",
-# "EX_fru_LPAREN_e_RPAREN_",
-# "EX_glyc_LPAREN_e_RPAREN_"
-# ]
-
 NUTRIENTS_YL=[                 # all essential non-carbon 'nutrients' for YL
 "EX_o2_LPAREN_e_RPAREN_",
 "EX_h2o_LPAREN_e_RPAREN_",
