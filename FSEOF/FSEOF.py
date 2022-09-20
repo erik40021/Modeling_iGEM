@@ -181,10 +181,7 @@ class FSEOF():
             self.targets.sort_values("q_slope", ascending=False, inplace=True)
 
 
-    def run(self, steps):
-        self.calculate_intitial_fluxes()
-        self.calculate_maxmimal_product_flux()
-        self.find_targets(steps) #add option to change maxCutoff?
+
 
 # TO-DO:
 # -why step -1 ?
