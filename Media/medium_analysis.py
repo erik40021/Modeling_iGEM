@@ -6,16 +6,6 @@ import pandas as pd
 import xlsxwriter
 from matplotlib import pyplot as plt
 
-# Food_YL=[                      #list carbon sources here   #not used atm
-# "EX_Fat_LPAREN_e_RPAREN_",
-# "EX_glc_LPAREN_e_RPAREN_",
-# "EX_inost_LPAREN_e_RPAREN_",
-# "EX_tre_LPAREN_e_RPAREN_",
-# "EX_xyl_D_LPAREN_e_RPAREN_",
-# "EX_fru_LPAREN_e_RPAREN_",
-# "EX_glyc_LPAREN_e_RPAREN_"
-# ]
-
 NUTRIENTS_YL=[                 # all essential non-carbon 'nutrients' for YL
 "EX_o2_LPAREN_e_RPAREN_",
 "EX_h2o_LPAREN_e_RPAREN_",
@@ -184,14 +174,15 @@ def calculate_amount_per_mass(reaction):
     return amount, formula, carbon
 
 
-def plot_oxygen_curves(filename):
+def plot_oxygen_curves(filename, verbose=False):
+    # TODO: adapt to plot-stylsheet conventions (colors!)
     df = pd.read_excel('Output/Media/Oxygen/' + filename + '.xlsx', index_col=0)
     
     metabolites = list(df.index)
     oxygenUptake = list(df.columns)
 
     #create figure
-    fig = plt.figure(figsize=(9,12))
+    fig = plt.figure(figsize=(14,10))
     ax = fig.add_subplot()
 
     for metabolite in metabolites:
@@ -201,7 +192,8 @@ def plot_oxygen_curves(filename):
     ax.set_ylabel("Alpha-pinene Flux [mmol/gdcw/h]")
     ax.legend()
     plt.savefig('Output/Media/Oxygen/' + filename + '.png')
-    plt.show()
+    if not verbose:
+        plt.show()
 
 
 
