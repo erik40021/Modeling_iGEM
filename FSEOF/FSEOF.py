@@ -53,11 +53,22 @@ class FSEOF():
         
         """
         DESCRIPTION:
-        The find_targets function performes multiple Flux variability analyses (FVA) while enforcing 
-        a certain flux through the reaction of interest. In doing so, the lower bound of the 
-        growth rate is set to 95% of the optimal growth rate of the organism. For each iteration of
-        the FVA the enforeced flux through the reaction of interest is increased. ADD REST OF DESCRIPTION
+        Find over-expression targets for the reaction of interest using the flux scanning based on enforced objective flux (FSEOF) algorithm. 
+        
+        Either FBA or FVA can be used. FVA will significantly increase the runtime.
 
+        PARAMETERS:
+        steps: int
+            Number of steps used for the FSEOF algorithm
+        
+        constrainBiomass: bool, default: False
+            Add a constrain for the biomass reaction during the FSEOF algorithm. The constrain can further be modified with the maxFluxCutoff parameter.
+
+        maxFluxCutoff: float, default: 0.95
+            Percentage of the theoretical maximal biomass flux that should be enfored during the FSEOF algorithm, if the constrainBiomass parameter is set to True.
+
+        RETURNS:
+        None
         """
 
         fluxes = pd.DataFrame()
@@ -73,7 +84,7 @@ class FSEOF():
             return popt[0]
 
         if constrainBiomass == True:
-            #constrain growth rate to 95% of optimal growth rate
+            #constrain growth rate to defined percentage of optimal growth rate
             growthConstraint = self.model.problem.Constraint(
                 self.model.reactions.get_by_id(self.biomassID).flux_expression, lb = maxFluxCutoff * self.optimalGrowth
             )
@@ -108,7 +119,7 @@ class FSEOF():
             self.targets = pd.concat([fluxes["q_slope"], fluxCapacity["l_sol"]], axis=1)
         
         else:
-            
+            #perform FSEOF algorithm with FBA
             for i in range(steps - 1):
                 
                 lb = self.initialProductFlux + (i/steps) * (self.maxProductFlux - self.initialProductFlux)
@@ -183,9 +194,6 @@ class FSEOF():
 
 
 
-# TO-DO:
-# -why step -1 ?
-# - limit output of FVA? Why is is the model read so often?
 
         
         
