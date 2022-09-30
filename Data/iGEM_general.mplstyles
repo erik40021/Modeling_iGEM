@@ -1,0 +1,42 @@
+
+
+#axes.prop_cycle: cycler("color", ["70284A", "1D4F60", "4DA284", "C45A8B", "62B5D0", "9ED1BF", "3C1628", "2F829D", "275344"])
+axes.prop_cycle: cycler("marker", ["o", "v", "1", "s", "p", "P", "*", "+", "x", "D"])
+
+mathtext.default: regular
+font.family: Calibri
+
+axes.linewidth: 1               # Spine edge line width
+axes.spines.top: False          # Display axis spines (True or False)
+axes.spines.left: True          # We only want the left and bottom spines
+axes.spines.right: False
+axes.spines.bottom: True
+
+lines.linewidth: 2.0
+
+
+
+axes.grid: true                 # display grid or not
+axes.grid.axis: y               # which axis the grid should apply to          
+grid.linewidth: 1               # in points
+#grid.color: A5A5A5              # grid color
+grid.color: DBDBDB
+
+figure.figsize: 16, 11
+
+savefig.bbox:      tight
+savefig.pad_inches:   0.2
+savefig.dpi: 300
+
+axes.labelsize: 24              # font size of the x and y labels
+xtick.labelsize: 18             # font size of the x tick labels      
+ytick.labelsize: 18             # font size of the y tick labels
+font.size: 18                   # default font size for text, given in points.
+xtick.major.pad: 8              # distance to major tick label in points  
+ytick.major.pad: 12 
+
+
+axes.titlelocation: left        # alignment of the title: {left, right, center}
+axes.titlepad: 20               # pad between axes and title in points
+axes.titlesize: 28              # font size of the axes title
+axes.titleweight: bold

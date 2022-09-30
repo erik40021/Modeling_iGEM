@@ -1,10 +1,12 @@
-from cProfile import label
 from cmath import nan
 import math
 from operator import index
 import pandas as pd
 import xlsxwriter
 from matplotlib import pyplot as plt
+from matplotlib import font_manager
+from cycler import cycler
+
 
 NUTRIENTS_YL=[                 # all essential non-carbon 'nutrients' for YL
 "EX_o2_LPAREN_e_RPAREN_",
@@ -175,6 +177,16 @@ def calculate_amount_per_mass(reaction):
 
 
 def plot_oxygen_curves(filename, verbose=False):
+    font_files = font_manager.findSystemFonts("./Systemsteuerung\Alle Systemsteuerungselemente\Schriftarten")
+    index = [i for i, s in enumerate(font_files) if "Calibri" in s]
+    index = index[0]
+    font_manager.fontManager.addfont(font_files[index])
+    
+
+    cc = cycler(color=["EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D"] ) * cycler(marker=["o", "v", "s", "p", "P", "*", "d", "x", "D"])
+
+   
+    plt.style.use("./Data\iGEM_general.mplstyles")
     # TODO: adapt to plot-stylsheet conventions (colors!)
     df = pd.read_excel('Output/Media/Oxygen/' + filename + '.xlsx', index_col=0)
     
@@ -184,6 +196,7 @@ def plot_oxygen_curves(filename, verbose=False):
     #create figure
     fig = plt.figure(figsize=(14,10))
     ax = fig.add_subplot()
+    ax.set_prop_cycle(cc)
 
     for metabolite in metabolites:
         ax.plot(oxygenUptake, df.loc[metabolite].values, label=metabolite)
