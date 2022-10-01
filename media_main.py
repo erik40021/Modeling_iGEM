@@ -46,11 +46,11 @@ def run_all_analyses():
 
 
 def plot_oxygen_results(verbose):
-    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalmass", verbose)
-    plot_oxygen_curves("sc_cyto_npp_oxygen_equalmass", verbose)   
-    plot_oxygen_curves("sc_perox_oxygen_equalmass", verbose)
-    plot_oxygen_curves("yl_cyto_oxygen_equalmass", verbose)
-    plot_oxygen_curves("yl_perox_oxygen_equalmass", verbose)
+    plot_oxygen_curves("sc_cyto_gpp_oxygen_equalmass", verbose, title=r"$\it{S. cerivisiae}$ cytosol")
+    plot_oxygen_curves("sc_cyto_npp_oxygen_equalmass", verbose, title=r"$\it{S. cerivisiae}$ cytosol")   
+    plot_oxygen_curves("sc_perox_oxygen_equalmass", verbose, title=r"$\it{S. cerivisiae}$ peroxisome")
+    plot_oxygen_curves("yl_cyto_oxygen_equalmass", verbose, title=r"$\it{Y. lipolytica}$ cytosol")
+    plot_oxygen_curves("yl_perox_oxygen_equalmass", verbose, title=r"$\it{Y. lipolytica}$ peroxisome")
 
     plot_oxygen_curves("sc_cyto_gpp_oxygen_equalcarbon", verbose)
     plot_oxygen_curves("sc_cyto_npp_oxygen_equalcarbon", verbose)   
