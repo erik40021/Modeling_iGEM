@@ -199,10 +199,11 @@ def plot_oxygen_curves(filename, verbose=False):
     ax.set_prop_cycle(cc)
 
     for metabolite in metabolites:
-        ax.plot(oxygenUptake, df.loc[metabolite].values, label=metabolite)
+        m = metabolite.strip("exchange")
+        ax.plot(oxygenUptake, df.loc[m].values, label=m)
     
     ax.set_xlabel("Oxygen uptake [mmol/gcdw/h]")
-    ax.set_ylabel("Alpha-pinene Flux [mmol/gdcw/h]")
+    ax.set_ylabel("α-pinene flux [mmol/gdcw/h]")
     ax.legend()
     plt.savefig('Output/Media/Oxygen/' + filename + '.png')
     if not verbose:
