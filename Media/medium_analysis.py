@@ -185,11 +185,6 @@ def plot_oxygen_curves(filename, verbose=False, title=None):
     index = index[0]
     font_manager.fontManager.addfont(font_files[index])
     
-    
-
-
-
-   
     plt.style.use("Data/iGEM_general.mplstyles")
     # TODO: adapt to plot-stylsheet conventions (colors!)
     df = pd.read_excel('Output/Media/Oxygen/' + filename + '.xlsx', index_col=0)
@@ -205,7 +200,7 @@ def plot_oxygen_curves(filename, verbose=False, title=None):
         color=["EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D", "F02DA6", "EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D", "F02DA6"]
     )
     for metabolite in metabolites:
-        m = metabolite.strip("exchange")
+        m = metabolite.replace("exchange", "")
         ax.plot(oxygenUptake, df.loc[m].values, label=m)
     
 
