@@ -2,11 +2,13 @@ from cmath import nan
 import math
 from operator import index
 import pandas as pd
-import xlsxwriter
+#import xlsxwriter
 from matplotlib import pyplot as plt
 from matplotlib import font_manager
 from cycler import cycler
-
+import numpy as np
+from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
+import matplotlib as mlp
 
 NUTRIENTS_YL=[                 # all essential non-carbon 'nutrients' for YL
 "EX_o2_LPAREN_e_RPAREN_",
@@ -176,17 +178,19 @@ def calculate_amount_per_mass(reaction):
     return amount, formula, carbon
 
 
-def plot_oxygen_curves(filename, verbose=False):
-    font_files = font_manager.findSystemFonts("./Systemsteuerung\Alle Systemsteuerungselemente\Schriftarten")
+def plot_oxygen_curves(filename, verbose=False, title=None):
+    
+    font_files = font_manager.findSystemFonts()
     index = [i for i, s in enumerate(font_files) if "Calibri" in s]
     index = index[0]
     font_manager.fontManager.addfont(font_files[index])
     
+    
 
-    cc = cycler(color=["EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D"] ) * cycler(marker=["o", "v", "s", "p", "P", "*", "d", "x", "D"])
+
 
    
-    plt.style.use("./Data\iGEM_general.mplstyles")
+    plt.style.use("Data/iGEM_general.mplstyles")
     # TODO: adapt to plot-stylsheet conventions (colors!)
     df = pd.read_excel('Output/Media/Oxygen/' + filename + '.xlsx', index_col=0)
     
@@ -196,16 +200,24 @@ def plot_oxygen_curves(filename, verbose=False):
     #create figure
     fig = plt.figure(figsize=(14,10))
     ax = fig.add_subplot()
-    ax.set_prop_cycle(cc)
-
+    ax.set_prop_cycle(
+        marker=["^","o", "v", "s", "p", "P", "*", "d", "x", "D", 'D', 'x', 'd', '*', 'P', 'p', 's', 'v', 'o', "^"],
+        color=["EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D", "F02DA6", "EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D", "F02DA6"]
+    )
     for metabolite in metabolites:
         m = metabolite.strip("exchange")
         ax.plot(oxygenUptake, df.loc[m].values, label=m)
     
+
+    ax.tick_params(axis='x', which='major', labelsize=14)
+    #ax.xaxis.set_major_locator(MultipleLocator(20))
+    #ax.xaxis.set_major_formatter('{x:.0f}')
+    #ax.xaxis.set_minor_locator(MultipleLocator(5))
+    ax.set_title(title)
     ax.set_xlabel("Oxygen uptake [mmol/gcdw/h]")
     ax.set_ylabel("α-pinene flux [mmol/gdcw/h]")
-    ax.legend()
-    plt.savefig('Output/Media/Oxygen/' + filename + '.png')
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.savefig('Output/Media/Oxygen/updated/' + filename + '.png', bbox_inches = "tight", dpi=300)
     if not verbose:
         plt.show()
 
