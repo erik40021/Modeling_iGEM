@@ -205,8 +205,8 @@ def plot_oxygen_curves(filename, verbose=False, title=None):
         color=["EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D", "F02DA6", "EFD2DF", "E4B4CA", "D996B5", "CE78A0", "C45A8B",  "B44177", "963663", "70284A", "2D101D", "F02DA6"]
     )
     for metabolite in metabolites:
-        m = metabolite.strip("exchange")
-        ax.plot(oxygenUptake, df.loc[m].values, label=m)
+        m = metabolite.replace("exchange", "")
+        ax.plot(oxygenUptake, df.loc[metabolite].values, label=m)
     
 
     ax.tick_params(axis='x', which='major', labelsize=14)
@@ -214,7 +214,7 @@ def plot_oxygen_curves(filename, verbose=False, title=None):
     #ax.xaxis.set_major_formatter('{x:.0f}')
     #ax.xaxis.set_minor_locator(MultipleLocator(5))
     ax.set_title(title)
-    ax.set_xlabel("Oxygen uptake [mmol/gcdw/h]")
+    ax.set_xlabel("Oxygen availability [mmol/gcdw/h]")
     ax.set_ylabel("α-pinene flux [mmol/gdcw/h]")
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.savefig('Output/Media/Oxygen/updated/' + filename + '.png', bbox_inches = "tight", dpi=300)
