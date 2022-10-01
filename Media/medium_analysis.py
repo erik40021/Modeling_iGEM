@@ -185,11 +185,6 @@ def plot_oxygen_curves(filename, verbose=False, title=None):
     index = index[0]
     font_manager.fontManager.addfont(font_files[index])
     
-    
-
-
-
-   
     plt.style.use("Data/iGEM_general.mplstyles")
     # TODO: adapt to plot-stylsheet conventions (colors!)
     df = pd.read_excel('Output/Media/Oxygen/' + filename + '.xlsx', index_col=0)
